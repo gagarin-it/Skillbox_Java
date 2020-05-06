@@ -35,7 +35,6 @@ public class Loader
         System.out.println("Lily weight: " + lily.getWeight());
         System.out.println("Lily status: " + lily.getStatus());
         lily.feed(500.0);
-        System.out.println("Lily feed--- ");
         System.out.println("Lily weight: " + lily.getWeight());
         System.out.println("Lily status: " + lily.getStatus());
 
@@ -43,7 +42,7 @@ public class Loader
         Cat nory = new Cat();
         System.out.println("Nory weight: " + nory.getWeight());
         System.out.println("Nory status: " + nory.getStatus());
-        nory.drink(100.2);
+        nory.drink(nory.getWeight()/100);
         System.out.println("Nory drink--- ");
         System.out.println("Nory weight: " + nory.getWeight());
         System.out.println("Nory status: " + nory.getStatus());
@@ -55,8 +54,8 @@ public class Loader
         while (mouse.getStatus() != "Exploded")
         {
             mouse.feed(200.5);
-            System.out.println("Mouse feed--- ");
         }
+        mouse.food();
         System.out.println("Mouse weight: " + mouse.getWeight());
         System.out.println("Mouse status: " + mouse.getStatus());
 
@@ -67,7 +66,6 @@ public class Loader
         while (lucky.getStatus() != "Sleeping")
         {
             lucky.feed(11.8541);
-            System.out.println("Lucky feed--- ");
             lucky.drink(22.7);
             System.out.println("Lucky drink--- ");
         }
@@ -78,6 +76,22 @@ public class Loader
         Cat sirius = new Cat();
         System.out.println("Sirius weight: " + sirius.getWeight());
         System.out.println("Sirius status: " + sirius.getStatus());
-
+        sirius.food();
+        sirius.feed(150.0);
+        sirius.food();
+        System.out.println("Sirius weight: " + sirius.getWeight());
+        sirius.pee();
+        sirius.pee();
+        sirius.pee();
+        sirius.pee();
+        sirius.pee();
+        System.out.println("Sirius weight: " + sirius.getWeight());
+        sirius.food();
+        sirius.feed(223.0);
+        sirius.food();
+        sirius.feed(111.0);
+        System.out.println("Sirius weight: " + sirius.getWeight());
+        System.out.println("Sirius status: " + sirius.getStatus());
+        sirius.food();
     }
 }
