@@ -95,3 +95,4 @@ public class Loader
         sirius.food();
     }
 }
+//Тест
