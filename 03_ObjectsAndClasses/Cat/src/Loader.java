@@ -55,7 +55,7 @@ public class Loader
         {
             mouse.feed(200.5);
         }
-        mouse.food();
+        mouse.weightFood();
         System.out.println("Mouse weight: " + mouse.getWeight());
         System.out.println("Mouse status: " + mouse.getStatus());
 
@@ -76,9 +76,9 @@ public class Loader
         Cat sirius = new Cat();
         System.out.println("Sirius weight: " + sirius.getWeight());
         System.out.println("Sirius status: " + sirius.getStatus());
-        sirius.food();
+        sirius.weightFood();
         sirius.feed(150.0);
-        sirius.food();
+        sirius.weightFood();
         System.out.println("Sirius weight: " + sirius.getWeight());
         sirius.pee();
         sirius.pee();
@@ -86,13 +86,12 @@ public class Loader
         sirius.pee();
         sirius.pee();
         System.out.println("Sirius weight: " + sirius.getWeight());
-        sirius.food();
+        sirius.weightFood();
         sirius.feed(223.0);
-        sirius.food();
+        sirius.weightFood();
         sirius.feed(111.0);
         System.out.println("Sirius weight: " + sirius.getWeight());
         System.out.println("Sirius status: " + sirius.getStatus());
-        sirius.food();
+        sirius.weightFood();
     }
 }
-//Тест

@@ -28,7 +28,7 @@ public class Cat
         System.out.println("Feed: " + amount);
     }
 
-    public void food()
+    public void weightFood()
     {
         System.out.println("Eating food: " + weightFood);
     }
@@ -64,4 +64,3 @@ public class Cat
         }
     }
 }
-// Тест
