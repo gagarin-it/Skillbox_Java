@@ -85,6 +85,7 @@ public class Loader
         sirius.pee();
         sirius.pee();
         sirius.pee();
+        sirius.pee();
         System.out.println("Sirius weight: " + sirius.getWeight());
         sirius.weightFood();
         sirius.feed(223.0);
