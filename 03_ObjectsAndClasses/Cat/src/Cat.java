@@ -3,7 +3,6 @@ public class Cat
     private double originWeight;
     private double weight;
     private double weightFood;
-
     private double minWeight;
     private double maxWeight;
 
