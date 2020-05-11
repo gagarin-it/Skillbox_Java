@@ -95,6 +95,18 @@ public class Loader
         System.out.println("Sirius status: " + sirius.getStatus());
         sirius.weightFood();
 
+        //Кошка 9
+        Cat nine = new Cat();
+        System.out.println("Nine weight: " + nine.getWeight());
+        System.out.println("Nine status: " + nine.getStatus());
+        nine.pee();
+        nine.pee();
+        nine.feed(456.0);
+        nine.feed(0.50);
+        nine.pee();
+        nine.weightFood();
+        System.out.println("Nine weight: " + nine.getWeight());
+
         //Кошка 10
         Cat ten = new Cat();
         System.out.println("Ten weight: " + ten.getWeight());
