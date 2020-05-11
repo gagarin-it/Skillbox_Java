@@ -102,6 +102,9 @@ public class Loader
         nine.pee();
         nine.pee();
         nine.feed(456.0);
+        nine.feed(0.50);
+        nine.pee();
+        nine.weightFood();
         System.out.println("Nine weight: " + nine.getWeight());
 
     }
