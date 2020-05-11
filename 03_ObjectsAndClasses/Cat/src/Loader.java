@@ -100,10 +100,7 @@ public class Loader
         System.out.println("Ten weight: " + ten.getWeight());
         System.out.println("Ten status: " + ten.getStatus());
         ten.feed(666.6);
-        ten.pee();
-        ten.pee();
         ten.weightFood();
-        ten.pee();
         System.out.println("Ten weight: " + ten.getWeight());
     }
 }
