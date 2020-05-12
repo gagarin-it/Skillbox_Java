@@ -108,6 +108,7 @@ public class Loader
         System.out.println("Nine weight: " + nine.getWeight());
 
         //Кошка 10
+        //Update
         Cat ten = new Cat();
         System.out.println("Ten weight: " + ten.getWeight());
         System.out.println("Ten status: " + ten.getStatus());
