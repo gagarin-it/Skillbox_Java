@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Cat
 {
     private double originWeight;
@@ -19,6 +21,12 @@ public class Cat
         maxWeight = 9000.0;
         count++;
         catAlive = true;
+    }
+    public Cat(double weight)
+    {
+        this();
+        this.weight = weight;
+        originWeight = weight;
     }
 
     public void meow()

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Loader
 {
     public static void main(String[] args)
@@ -120,7 +122,19 @@ public class Loader
         ten.meow();
         ten.drink(10.0);
         System.out.println("Ten weight: " + ten.getWeight());
+
         //Вывод на экран количества кошек
         System.out.println("Количество живых кошек: " + Cat.getCount());
+
+//        Loader.getKitten();
+//        System.out.println("Маня весит: " + Cat.getWeight());
+//        System.out.println("Количество живых кошек: " + Cat.getCount());
+
     }
+    private static Cat getKitten()
+    {
+        Cat manya = new Cat(1100.0);
+        return manya;
+    }
+
 }
