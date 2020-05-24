@@ -118,8 +118,8 @@ public class Loader
         ten.pee();
         ten.feed(666.6);
         ten.meow();
+        ten.drink(10.0);
         System.out.println("Ten weight: " + ten.getWeight());
-
         //Вывод на экран количества кошек
         System.out.println("Количество живых кошек: " + Cat.getCount());
     }

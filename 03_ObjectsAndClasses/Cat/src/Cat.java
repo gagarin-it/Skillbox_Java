@@ -7,7 +7,9 @@ public class Cat
     private double maxWeight;
     private static int count;
     private static boolean catAlive;
-
+    public static final int CAT_QTY_EYES = 2;
+    public static final int CAT_MIN_WEIGHT = 1200;
+    public static final int CAT_MAX_WEIGHT = 7500;
 
     public Cat()
     {
