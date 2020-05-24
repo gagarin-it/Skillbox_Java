@@ -29,6 +29,7 @@ public class Loader
         }
         System.out.println("Scheila weight: " + scheila.getWeight());
         System.out.println("Scheila status: " + scheila.getStatus());
+        scheila.meow();
 
         //Кошка №4
         Cat lily = new Cat();
@@ -94,6 +95,7 @@ public class Loader
         System.out.println("Sirius weight: " + sirius.getWeight());
         System.out.println("Sirius status: " + sirius.getStatus());
         sirius.weightFood();
+
         //Кошка 9
         Cat nine = new Cat();
         System.out.println("Nine weight: " + nine.getWeight());
@@ -101,17 +103,24 @@ public class Loader
         nine.pee();
         nine.pee();
         nine.feed(456.0);
-        nine.feed(0.50);
+        nine.feed(1.50);
         nine.pee();
         nine.weightFood();
         System.out.println("Nine weight: " + nine.getWeight());
+
         //Кошка 10
-        //Update
         Cat ten = new Cat();
         System.out.println("Ten weight: " + ten.getWeight());
         System.out.println("Ten status: " + ten.getStatus());
-        ten.feed(666.6);
+        ten.feed(9666.6);
         ten.weightFood();
         System.out.println("Ten weight: " + ten.getWeight());
+        ten.pee();
+        ten.feed(666.6);
+        ten.meow();
+        System.out.println("Ten weight: " + ten.getWeight());
+
+        //Вывод на экран количества кошек
+        System.out.println("Количество живых кошек: " + Cat.getCount());
     }
 }

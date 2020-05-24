@@ -5,6 +5,9 @@ public class Cat
     private double weightFood;
     private double minWeight;
     private double maxWeight;
+    private static int count;
+    private static boolean catAlive;
+
 
     public Cat()
     {
@@ -12,19 +15,45 @@ public class Cat
         originWeight = weight;
         minWeight = 1000.0;
         maxWeight = 9000.0;
+        count++;
+        catAlive = true;
     }
 
     public void meow()
     {
-        weight = weight - 1;
-        System.out.println("Meow");
+            if(catAlive)
+            {
+                weight = weight - 1;
+                System.out.println("Meow");
+            }
+            else
+            {
+                System.out.println("Мертвые кошки не мяукают");
+            }
+
+        if (weight < minWeight && catAlive)
+            {
+                count--;
+                catAlive = false;
+            }
     }
 
     public void feed(Double amount)
     {
-        weight = weight + amount;
-        weightFood = weightFood + amount;
-        System.out.println("Feed: " + amount);
+        if(catAlive) {
+            weight = weight + amount;
+            weightFood = weightFood + amount;
+            System.out.println("Feed: " + amount);
+        }
+        else
+        {
+            System.out.println("Мертвые кошки не едят");
+        }
+        if (weight > maxWeight && catAlive)
+            {
+            catAlive = false;
+            count--;
+            }
     }
 
     public void weightFood()
@@ -34,13 +63,37 @@ public class Cat
 
     public void pee()
     {
-        weight = weight - 17.83;
-        System.out.println("Pee-pee");
+            if (catAlive)
+            {
+                weight = weight - 17.83;
+                System.out.println("Pee-pee");
+            }
+            else
+            {
+                System.out.println("Мертвые кошки не ходят в туалет");
+            }
+        if (weight < minWeight && catAlive)
+            {
+            count--;
+            catAlive = false;
+            }
     }
 
     public void drink(Double amount)
     {
-        weight = weight + amount;
+        if(catAlive)
+        {
+            weight = weight + amount;
+        }
+        else
+        {
+            System.out.println("Мёртвые кошки не пьют");
+        }
+        if (weight > maxWeight && catAlive)
+        {
+            count--;
+            catAlive = false;
+        }
     }
 
     public Double getWeight()
@@ -61,5 +114,9 @@ public class Cat
         else {
             return "Playing";
         }
+    }
+    public static int getCount()
+    {
+        return count;
     }
 }
