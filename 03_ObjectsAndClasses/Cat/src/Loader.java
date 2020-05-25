@@ -131,7 +131,12 @@ public class Loader
         Cat alisa = new Cat();
         System.out.println("Алиса весит: " + alisa.getWeight());
         alisa.setCatColor("Белый");
-        System.out.println("У алисы окрас: " + alisa.getCatColor());
+        System.out.println("У Алисы окрас: " + alisa.getCatColor());
+
+        //Создание копии
+        Cat vanya = new Cat(alisa.getWeight(),alisa.getCatColor());
+        System.out.println("Ванька весит: " + vanya.getWeight());
+        System.out.println("У Ваньки окрас: " + vanya.getCatColor());
 
     }
     private static Cat getKitten()

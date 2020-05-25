@@ -29,7 +29,13 @@ public class Cat
         this.weight = weight;
         originWeight = weight;
     }
-
+    public Cat(double weight, String catColor)
+    {
+        this();
+        this.catColor = catColor;
+//        this.weight = weight;
+//        originWeight = weight;
+    }
     public void meow()
     {
             if(catAlive)
