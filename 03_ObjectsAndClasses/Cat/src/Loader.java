@@ -137,7 +137,6 @@ public class Loader
         Cat vanya = new Cat(alisa.getWeight(),alisa.getCatColor());
         System.out.println("Ванька весит: " + vanya.getWeight());
         System.out.println("У Ваньки окрас: " + vanya.getCatColor());
-
     }
     private static Cat getKitten()
     {
