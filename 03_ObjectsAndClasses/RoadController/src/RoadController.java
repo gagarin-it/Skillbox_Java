@@ -2,6 +2,7 @@ import core.*;
 import core.Camera;
 
 import java.util.Scanner;
+import org.w3c.dom.ls.LSOutput;
 
 public class RoadController
 {
@@ -90,4 +91,5 @@ public class RoadController
     {
         System.out.println("Проезд невозможен: " + reason);
     }
+
 }

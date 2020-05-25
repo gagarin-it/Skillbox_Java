@@ -12,6 +12,7 @@ public class Cat
     public static final int CAT_QTY_EYES = 2;
     public static final int CAT_MIN_WEIGHT = 1200;
     public static final int CAT_MAX_WEIGHT = 7500;
+    private String catColor;
 
     public Cat()
     {
@@ -128,5 +129,13 @@ public class Cat
     public static int getCount()
     {
         return count;
+    }
+    public void setCatColor(String catColor)
+    {
+        this.catColor = catColor;
+    }
+    public String getCatColor()
+    {
+        return catColor;
     }
 }

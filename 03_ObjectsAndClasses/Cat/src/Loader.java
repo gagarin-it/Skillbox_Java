@@ -26,7 +26,8 @@ public class Loader
         Cat scheila = new Cat();
         System.out.println("Scheila weight: " + scheila.getWeight());
         System.out.println("Scheila status: " + scheila.getStatus());
-        while (scheila.getStatus() != "Dead") {
+        while (!scheila.getStatus().equals("Dead"))
+        {
             scheila.meow();
         }
         System.out.println("Scheila weight: " + scheila.getWeight());
@@ -54,7 +55,7 @@ public class Loader
         Cat mouse = new Cat();
         System.out.println("Mouse weight: " + mouse.getWeight());
         System.out.println("Mouse status: " + mouse.getStatus());
-        while (mouse.getStatus() != "Exploded")
+        while (!mouse.getStatus().equals("Exploded"))
         {
             mouse.feed(200.5);
         }
@@ -66,7 +67,7 @@ public class Loader
         Cat lucky = new Cat();
         System.out.println("Lucky weight: " + lucky.getWeight());
         System.out.println("Lucky status: " + lucky.getStatus());
-        while (lucky.getStatus() != "Sleeping")
+        while (!lucky.getStatus().equals("Sleeping"))
         {
             lucky.feed(11.8541);
             lucky.drink(22.7);
@@ -126,9 +127,11 @@ public class Loader
         //Вывод на экран количества кошек
         System.out.println("Количество живых кошек: " + Cat.getCount());
 
-//        Loader.getKitten();
-//        System.out.println("Маня весит: " + Cat.getWeight());
-//        System.out.println("Количество живых кошек: " + Cat.getCount());
+        //Использование сеттера и геттера окраса
+        Cat alisa = new Cat();
+        System.out.println("Алиса весит: " + alisa.getWeight());
+        alisa.setCatColor("Белый");
+        System.out.println("У алисы окрас: " + alisa.getCatColor());
 
     }
     private static Cat getKitten()
