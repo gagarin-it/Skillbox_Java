@@ -12,7 +12,7 @@ public class Cat
     public static final int CAT_QTY_EYES = 2;
     public static final int CAT_MIN_WEIGHT = 1200;
     public static final int CAT_MAX_WEIGHT = 7500;
-    private String catColor;
+    private Color color;
 
     public Cat()
     {
@@ -29,12 +29,12 @@ public class Cat
         this.weight = weight;
         originWeight = weight;
     }
-    public Cat(double weight, String catColor)
+    public Cat(Cat other)
     {
         this();
-        this.catColor = catColor;
-//        this.weight = weight;
-//        originWeight = weight;
+        this.color = other.color;
+        this.weight = other.weight;
+        originWeight = weight;
     }
     public void meow()
     {
@@ -136,12 +136,12 @@ public class Cat
     {
         return count;
     }
-    public void setCatColor(String catColor)
+    public void setColor(Color color)
     {
-        this.catColor = catColor;
+        this.color = color;
     }
-    public String getCatColor()
+    public Color getColor()
     {
-        return catColor;
+        return color;
     }
 }

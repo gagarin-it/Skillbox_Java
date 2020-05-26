@@ -130,13 +130,13 @@ public class Loader
         //Использование сеттера и геттера окраса
         Cat alisa = new Cat();
         System.out.println("Алиса весит: " + alisa.getWeight());
-        alisa.setCatColor("Белый");
-        System.out.println("У Алисы окрас: " + alisa.getCatColor());
+        alisa.setColor(Color.РЫЖИЙ);
+        System.out.println("У Алисы окрас: " + alisa.getColor());
 
         //Создание копии
-        Cat vanya = new Cat(alisa.getWeight(),alisa.getCatColor());
+        Cat vanya = new Cat(alisa);
         System.out.println("Ванька весит: " + vanya.getWeight());
-        System.out.println("У Ваньки окрас: " + vanya.getCatColor());
+        System.out.println("У Ваньки окрас: " + vanya.getColor());
     }
     private static Cat getKitten()
     {

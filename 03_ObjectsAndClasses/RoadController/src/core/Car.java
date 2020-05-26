@@ -43,23 +43,23 @@ public class Car
     {
         return weight;
     }
-//    public void setHasVehicle(boolean hasVehicle)
-//    {
-//        this.hasVehicle = hasVehicle;
-//    }
-//
-//    public boolean getHasVehicle()
-//    {
-//        return hasVehicle;
-//    }
-//    public void setIsSpecial(boolean isSpecial)
-//    {
-//        this.isSpecial = isSpecial;
-//    }
-//
-//    public boolean isIsSpecial()
-//    {
-//        return isSpecial;
-//    }
+    public void setHasVehicle(boolean hasVehicle)
+    {
+        this.hasVehicle = hasVehicle;
+    }
+
+    public boolean isHasVehicle()
+    {
+        return hasVehicle;
+    }
+    public void setSpecial(boolean isSpecial)
+    {
+        this.isSpecial = isSpecial;
+    }
+
+    public boolean isSpecial()
+    {
+        return isSpecial;
+    }
 
 }
