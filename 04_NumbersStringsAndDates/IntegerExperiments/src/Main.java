@@ -6,7 +6,7 @@ public class Main
         Container container = new Container();
         container.count += 7843;
         Container container2 = new Container();
-        container2.count += 151;
+        container2.count += 1000000000;
         System.out.println("Число: " + container.count);
         System.out.println("Сумма цифр в числе: " + sumDigits(container.count));
         System.out.println("Число: " + container2.count);
