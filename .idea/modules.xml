@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/03_ObjectsAndClasses/AiroportBase/AiroportBase.iml" filepath="$PROJECT_DIR$/03_ObjectsAndClasses/AiroportBase/AiroportBase.iml" />
       <module fileurl="file://$PROJECT_DIR$/03_ObjectsAndClasses/Cat/Cat.iml" filepath="$PROJECT_DIR$/03_ObjectsAndClasses/Cat/Cat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/HumanitarianSupport/HumanitarianSupport.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/HumanitarianSupport/HumanitarianSupport.iml" />
       <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/IntegerExperiments/IntegerExperiments.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/IntegerExperiments/IntegerExperiments.iml" />
       <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/MinMaxValue/MinMaxValue.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/MinMaxValue/MinMaxValue.iml" />
       <module fileurl="file://$PROJECT_DIR$/03_ObjectsAndClasses/RoadController/RoadController.iml" filepath="$PROJECT_DIR$/03_ObjectsAndClasses/RoadController/RoadController.iml" />
