@@ -8,19 +8,21 @@ public class Main {
     System.out.println("Введите количество загруженных ящиков: ");
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     int boxes = Integer.parseInt(reader.readLine());
-    int containers = boxes / 27;
-    int trucks = containers / 12;
-    for (int i = 1; i <= ((boxes % 27) % 12); i++)
-      {
-        System.out.println("Грузовик " + i);
-        for (int j = 1; j <= 12; j++)
-        {
-          System.out.println("Контейнер " + j);
-          for (int y = 1; y <= 27; y++)
+    int container = 0, truck = 0;
+    for (int b = 1; b <= boxes; b++)
           {
-            System.out.println("\tЯщик " + y);
+            if ((b - 1) % 27 == 0)
+            {
+              if (container  % 12 == 0)
+              {
+              truck++;
+              System.out.println("Грузовик " + truck);
+              }
+              container++;
+              System.out.println("Контейнер " + container);
+            }
+            System.out.println("\tЯщик " + b );
           }
-        }
-      }
+    System.out.println("Необходимо:\nгрузовиков - " + truck + " шт.\nконтейнеров - " + container + " шт.");
   }
 }
