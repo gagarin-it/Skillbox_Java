@@ -10,15 +10,17 @@ public class Main {
     int boxes = Integer.parseInt(reader.readLine());
     int containers = boxes / 27;
     int trucks = containers / 12;
-    if(boxes != 0 && containers != 0)
-    {
-      for (int i = 1; i <= 27; i++)
+    for (int i = 1; i <= ((boxes % 27) % 12); i++)
       {
-        System.out.println("Ящик " + i);
+        System.out.println("Грузовик " + i);
+        for (int j = 1; j <= 12; j++)
+        {
+          System.out.println("Контейнер " + j);
+          for (int y = 1; y <= 27; y++)
+          {
+            System.out.println("\tЯщик " + y);
+          }
+        }
       }
-
-    }
-
-    System.out.println(boxes);
   }
 }
