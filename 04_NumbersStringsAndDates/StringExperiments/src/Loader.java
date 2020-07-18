@@ -3,8 +3,16 @@ public class Loader
 {
     public static void main(String[] args)
     {
-        String text = "Вася заработал 5000 рублей, Петя - 7563 рубля, а Маша - 30000 рублей";
+        for(char i = 'A'; i <= 'Z';i++)
+        {
+            System.out.println(i + " - " + ((int)i));
+        }
+        for(char i = 'a'; i <= 'z';i++)
+        {
+            System.out.println(i + " - " + ((int)i));
+        }
 
-        System.out.println(text);
+//        String text = "Вася заработал 5000 рублей, Петя - 7563 рубля, а Маша - 30000 рублей";
+//        System.out.println(text);
     }
 }
