@@ -19,15 +19,15 @@ public class DayOfWeekOnBirthday {
 
     Calendar dateNow = new GregorianCalendar();
     Calendar dateBorn = new GregorianCalendar(year, month - 1, day);
-    DateFormat dateFormat = new SimpleDateFormat(" - dd.MM.YYYY - EEEE");
-    int differenceYear = dateNow.get(Calendar.YEAR) - dateBorn.get(Calendar.YEAR);
+    DateFormat dateFormat = new SimpleDateFormat(" - dd.MM.yyyy - EEEE");
 
-    for (int i = 0; i <= differenceYear; i++) {
-      if (dateBorn.before(dateNow) == true) {
-      System.out.println(i + dateFormat.format(dateBorn.getTime()));
-      dateBorn.add(Calendar.YEAR, 1);
-            }
-      else break;
-        }
+    for (int i = 0; ; i++) {
+      if (dateBorn.before(dateNow)) {
+        System.out.println(i + dateFormat.format(dateBorn.getTime()));
+        dateBorn.add(Calendar.YEAR, 1);
+      } else {
+        break;
       }
     }
+  }
+}
