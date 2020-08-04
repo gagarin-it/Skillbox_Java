@@ -16,18 +16,16 @@ public class DayOfWeekOnBirthday {
     int month = Integer.parseInt(reader.readLine());
     System.out.println("Введите год Вашего рождения: ");
     int year = Integer.parseInt(reader.readLine());
+    int i = 0;
 
     Calendar dateNow = new GregorianCalendar();
     Calendar dateBorn = new GregorianCalendar(year, month - 1, day);
     DateFormat dateFormat = new SimpleDateFormat(" - dd.MM.yyyy - EEEE");
 
-    for (int i = 0; ; i++) {
-      if (dateBorn.before(dateNow)) {
-        System.out.println(i + dateFormat.format(dateBorn.getTime()));
-        dateBorn.add(Calendar.YEAR, 1);
-      } else {
-        break;
-      }
+    while (dateBorn.before(dateNow)) {
+      System.out.println(i + dateFormat.format(dateBorn.getTime()));
+      dateBorn.add(Calendar.YEAR, 1);
+      i++;
     }
   }
 }
