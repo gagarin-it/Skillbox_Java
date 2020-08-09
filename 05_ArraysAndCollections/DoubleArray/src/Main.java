@@ -7,7 +7,7 @@ public class Main {
     String[][] cross = new String[WIDTH_ARRAY][HEIGHT_ARRAY];
     for (int i = 0; i < cross.length; i++) {
       for (int j = 0; j < cross[i].length; j++) {
-        if ((j + i) % (cross[i].length - 1) == 0 || (j - i) % (cross[i].length - 1) == 0) {
+        if (i == j || i + j == cross[i].length - 1) {
           cross[i][j] = "X";
         } else {
           cross[i][j] = " ";
