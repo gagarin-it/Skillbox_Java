@@ -21,15 +21,15 @@ public class Main {
     while (true) {
       String s = reader.readLine();
       String[] massiveSplit = s.split("\\s+", 3);
-      if (s.equals("LIST")) {
+      if (s.equalsIgnoreCase("LIST")) {
         for (int i = 0; i < toDoList.size(); i++) {
           System.out.println(i + ") " + toDoList.get(i));
         }
       }
-      if (s.equals("EXIT")) {
+      if (s.equalsIgnoreCase("EXIT")) {
         break;
       }
-      if (s.matches("ADD\\s+(\\d+)\\s+(\\w*.*)")) {
+      if (s.matches("(?i)ADD\\s+(\\d+)\\s+(\\w*.*)")) {
         indexList = Integer.parseInt(massiveSplit[1]);
         if (indexList < toDoList.size()) {
           toDoList.add(indexList, massiveSplit[2]);
@@ -37,10 +37,10 @@ public class Main {
           System.err.println("Введён неверный номер дела, дело добавлено в конец списка");
           toDoList.add(massiveSplit[2]);
         }
-      } else if (s.matches("ADD\\s+\\w.*")) {
-        toDoList.add(massiveSplit[1]);
+      } else if (s.matches("(?i)ADD\\s+\\w.*")) {
+        toDoList.add(massiveSplit[1] + massiveSplit[2]);
       }
-      if (s.matches("EDIT\\s+(\\d+)\\s+(\\w*.*)")) {
+      if (s.matches("(?i)EDIT\\s+(\\d+)\\s+(\\w*.*)")) {
         indexList = Integer.parseInt(massiveSplit[1]);
         if (indexList < toDoList.size()) {
           toDoList.set(indexList, massiveSplit[2]);
@@ -48,7 +48,7 @@ public class Main {
           System.err.println("Введён неверный номер дела");
         }
       }
-      if (s.matches("DELETE\\s+(\\d+).*")) {
+      if (s.matches("(?i)DELETE\\s+(\\d+).*")) {
         indexList = Integer.parseInt(massiveSplit[1]);
         if (indexList < toDoList.size()) {
           toDoList.remove(indexList);
