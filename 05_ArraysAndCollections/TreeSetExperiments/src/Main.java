@@ -1,14 +1,16 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Set;
 import java.util.TreeSet;
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
   public static void main(String[] args) throws IOException {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    TreeSet<String> treeList = new TreeSet<>();
+    Set<String> treeList = new TreeSet<>();
     System.out.println(
         "Добро пожаловать в перечень адресов электронной почты."
             + "\n Для работы используйте следующие команды:"
