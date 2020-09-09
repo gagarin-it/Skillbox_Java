@@ -13,6 +13,9 @@ public class Main {
     Map<String, String> name2phone = new TreeMap<>();
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     System.out.println("Введите имя контакта или номер телефона:");
+      name2phone.put("Иванов-Фёдоров Пётр Сергеевич", "+79825637955");
+      name2phone.put("Гагарин Александр Юрьевич", "+79991111111");
+      name2phone.put("Ромик-оглы Арзиманов", "+79212025469");
     while (true) {
       String name2number = reader.readLine();
       if (name2number.equalsIgnoreCase("LIST")) {
@@ -29,10 +32,6 @@ public class Main {
           .compile("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
       Matcher matcherNumber = patternNumber.matcher(name2number);
 
-      name2phone.put("Иванов-Фёдоров Пётр Сергеевич", "+79825637955");
-      name2phone.put("Гагарин Александр Юрьевич", "+79991111111");
-      name2phone.put("Ромик-оглы Арзиманов", "+79212025469");
-
       if (matcherNumber.find()) {
         if (name2phone.containsValue(name2number)) {
           int index = new ArrayList<>(name2phone.values()).indexOf(name2number);
@@ -41,10 +40,9 @@ public class Main {
           System.out.println("Введите имя контакта, для добавления в телефонную книгу:");
           String name = reader.readLine();
           if (name2phone.containsKey(name)) {
-            name2phone.put(name, name2phone.get(name) + "\n\t" + name2number);
-            name2phone.replace(name, name2phone.get(name) + "\n\t" + name2number);
+            name2phone.put(name, name2phone.get(name) + "\n" + name2number);
           }
-          name2phone.put(name, name2number);
+          else name2phone.put(name, name2number);
         }
       }
       if (matcherName.find()) {
@@ -61,7 +59,7 @@ public class Main {
 
   private static void listMap(Map<String, String> map) {
     for (String key : map.keySet()) {
-      System.out.println(key + "\n\t" + map.get(key));
+      System.out.println(key + "\n" + map.get(key));
     }
   }
 }
