@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/03_ObjectsAndClasses/AiroportBase/AiroportBase.iml" filepath="$PROJECT_DIR$/03_ObjectsAndClasses/AiroportBase/AiroportBase.iml" />
       <module fileurl="file://$PROJECT_DIR$/05_ArraysAndCollections/AutoNumberArray/AutoNumberArray.iml" filepath="$PROJECT_DIR$/05_ArraysAndCollections/AutoNumberArray/AutoNumberArray.iml" />
+      <module fileurl="file://$PROJECT_DIR$/06_InheritanceAndPolymorphism/BankAccount/BankAccount.iml" filepath="$PROJECT_DIR$/06_InheritanceAndPolymorphism/BankAccount/BankAccount.iml" />
       <module fileurl="file://$PROJECT_DIR$/03_ObjectsAndClasses/Cat/Cat.iml" filepath="$PROJECT_DIR$/03_ObjectsAndClasses/Cat/Cat.iml" />
       <module fileurl="file://$PROJECT_DIR$/05_ArraysAndCollections/DoubleArray/DoubleArray.iml" filepath="$PROJECT_DIR$/05_ArraysAndCollections/DoubleArray/DoubleArray.iml" />
       <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/GeometryCalculator/GeometryCalculator.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/GeometryCalculator/GeometryCalculator.iml" />
