@@ -9,12 +9,14 @@ public abstract class Client {
   }
 
   public abstract void accountInformation();
+  protected abstract double getWithdrawalComission(double amount);
+  protected abstract double getDepositComission(double amount);
 
-  public void addMoney(double addMoney) {
+  public void depositMoney(double addMoney) {
     this.money = money + addMoney;
   }
 
-  public void removalMoney(double removalMoney) {
+  public void withdrawalMoney(double removalMoney) {
     if (this.money - removalMoney >= 0) {
       this.money = money - removalMoney;
       System.out.println("Списано " + removalMoney);
