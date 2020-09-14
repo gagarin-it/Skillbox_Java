@@ -10,29 +10,23 @@ public class IndividualEntrepreneur extends Client {
   public void accountInformation() {
     System.out.println("Баланс счёта: " + accountBalance()
         + "\nУсловия пополнения счёта: " + "Пополнение с комиссией "
-        + getDepositComission(999) + " %, если сумма меньше 1000 рублей. И с комиссией "
-        + getDepositComission(1000) + "%, если сумма больше либо равна 1000 рублей"
+        + getDepositComission(100) + " %, если сумма меньше 1000 рублей. И с комиссией "
+        + getDepositComission(50) + "%, если сумма больше либо равна 1000 рублей"
         + "\nУсловия списания со счёта: " + "Снятие без комиссии");
   }
 
   @Override
-  protected abstract double getDepositComission(double amount) {
-  private static final double PERCENT_COMMISSION_BEFORE_1000 = 1;
-  private static final double PERCENT_COMMISSION_AFTER_1000 = 0.5;
+  protected double getWithdrawalComission(double amount) {
+    return 0;
+  }
+
+  @Override
+  protected double getDepositComission(double amount) {
+   final double PERCENT_COMMISSION_BEFORE_1000 = 1;
+   final double PERCENT_COMMISSION_AFTER_1000 = 0.5;
     if (amount < 1000) {
       return amount / 100 * PERCENT_COMMISSION_BEFORE_1000;
     } 
       return amount / 100 * PERCENT_COMMISSION_AFTER_1000;
     }
-
-  @Override
-  public void depositMoney(double addMoney) {
-    double commissionForAddBefore1000 = addMoney / 100 * PERCENT_COMMISSION_BEFORE_1000;
-    double commissionForAddAfter1000 = addMoney / 100 * PERCENT_COMMISSION_AFTER_1000;
-    if (addMoney < 1000) {
-      this.money = money + addMoney - commissionForAddBefore1000;
-    } else {
-      this.money = money + addMoney - commissionForAddAfter1000;
-    }
-  }
 }

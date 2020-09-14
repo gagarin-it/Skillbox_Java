@@ -13,7 +13,8 @@ public abstract class Client {
   protected abstract double getDepositComission(double amount);
 
   public void depositMoney(double addMoney) {
-    this.money = money + addMoney;
+    this.money = money + addMoney - getDepositComission(addMoney);
+    System.out.println("Внесено " + (addMoney - getDepositComission(addMoney)));
   }
 
   public void withdrawalMoney(double removalMoney) {

@@ -11,14 +11,19 @@ public class LegalPerson extends Client {
   public void accountInformation() {
     System.out.println("Баланс счёта: " + accountBalance()
         + "\nУсловия пополнения счёта: " + "Пополнение без комиссии"
-        + "\nУсловия списания со счёта: " + "Снятие с комиссией: " + getWithdrawalComission(100) " %");
+        + "\nУсловия списания со счёта: " + "Снятие с комиссией: " + getWithdrawalComission(100) + " %");
   }
 
   @Override
-  protected abstract double getWithdrawalComission(double amount) {
-      private static final double PERCENT_COMMISSION = 1;
+  protected double getWithdrawalComission(double amount) {
+      final double PERCENT_COMMISSION = 1;
       return amount / 100 * PERCENT_COMMISSION;
     }
+
+  @Override
+  protected double getDepositComission(double amount) {
+    return 0;
+  }
 
   @Override
   public void withdrawalMoney(double removalMoney) {

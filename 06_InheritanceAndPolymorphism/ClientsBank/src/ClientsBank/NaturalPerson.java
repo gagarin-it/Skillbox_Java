@@ -12,4 +12,14 @@ public class NaturalPerson extends Client {
         + "\nУсловия пополнения счёта: " + "Пополнение без комиссии"
         + "\nУсловия снятия со счёта: " + "Снятие без комиссии");
   }
+
+  @Override
+  protected double getWithdrawalComission(double amount) {
+    return 0;
+  }
+
+  @Override
+  protected double getDepositComission(double amount) {
+    return 0;
+  }
 }
