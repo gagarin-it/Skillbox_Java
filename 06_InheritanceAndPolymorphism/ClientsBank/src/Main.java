@@ -21,6 +21,8 @@ public class Main {
     legalPerson.accountInformation();
     legalPerson.withdrawalMoney(48000);
     legalPerson.accountInformation();
+    legalPerson.withdrawalMoney(76000);
+    legalPerson.accountInformation();
 
     System.out.println("-------------------------------------");
 

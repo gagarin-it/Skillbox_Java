@@ -18,11 +18,12 @@ public abstract class Client {
   }
 
   public void withdrawalMoney(double removalMoney) {
-    if (this.money - removalMoney >= 0) {
-      this.money = money - removalMoney;
-      System.out.println("Списано " + removalMoney);
+    boolean notNegativeBalance = removalMoney + getWithdrawalComission(removalMoney) <= money;
+    if (notNegativeBalance) {
+      this.money = money - removalMoney - getWithdrawalComission(removalMoney);
+      System.out.println("Списано " + (removalMoney + getWithdrawalComission(removalMoney)));
     } else {
-      System.out.println("На счёте не достаточно средств для снятия");
+      System.out.println("Сумма снятия с комиссией превышает остаток на счёте");
     }
   }
 }

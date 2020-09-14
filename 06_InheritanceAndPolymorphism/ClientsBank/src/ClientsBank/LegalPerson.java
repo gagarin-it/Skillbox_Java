@@ -24,15 +24,4 @@ public class LegalPerson extends Client {
   protected double getDepositComission(double amount) {
     return 0;
   }
-
-  @Override
-  public void withdrawalMoney(double removalMoney) {
-    boolean notNegativeBalance = removalMoney + getWithdrawalComission(removalMoney) <= money;
-    if (notNegativeBalance) {
-      this.money = money - removalMoney - getWithdrawalComission(removalMoney);
-      System.out.println("Списано " + removalMoney + " , с комиссией " + getWithdrawalComission(removalMoney));
-    } else {
-      System.out.println("Сумма снятия с комиссией превышает остаток на счёте");
-    }
-  }
 }
