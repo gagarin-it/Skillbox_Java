@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/07_AdvancedOOPFeatures/07_AdvancedOOPFeatures.iml" filepath="$PROJECT_DIR$/07_AdvancedOOPFeatures/07_AdvancedOOPFeatures.iml" />
       <module fileurl="file://$PROJECT_DIR$/03_ObjectsAndClasses/AiroportBase/AiroportBase.iml" filepath="$PROJECT_DIR$/03_ObjectsAndClasses/AiroportBase/AiroportBase.iml" />
       <module fileurl="file://$PROJECT_DIR$/05_ArraysAndCollections/AutoNumberArray/AutoNumberArray.iml" filepath="$PROJECT_DIR$/05_ArraysAndCollections/AutoNumberArray/AutoNumberArray.iml" />
       <module fileurl="file://$PROJECT_DIR$/06_InheritanceAndPolymorphism/BankAccount/BankAccount.iml" filepath="$PROJECT_DIR$/06_InheritanceAndPolymorphism/BankAccount/BankAccount.iml" />
@@ -13,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/GeometryCalculator/GeometryCalculator.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/GeometryCalculator/GeometryCalculator.iml" />
       <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/HumanitarianSupport/HumanitarianSupport.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/HumanitarianSupport/HumanitarianSupport.iml" />
       <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/IntegerExperiments/IntegerExperiments.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/IntegerExperiments/IntegerExperiments.iml" />
+      <module fileurl="file://$PROJECT_DIR$/07_AdvancedOOPFeatures/LambdaExpressions/LambdaExpressions.iml" filepath="$PROJECT_DIR$/07_AdvancedOOPFeatures/LambdaExpressions/LambdaExpressions.iml" />
       <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/MinMaxValue/MinMaxValue.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/MinMaxValue/MinMaxValue.iml" />
       <module fileurl="file://$PROJECT_DIR$/05_ArraysAndCollections/PhoneBookMap/PhoneBookMap.iml" filepath="$PROJECT_DIR$/05_ArraysAndCollections/PhoneBookMap/PhoneBookMap.iml" />
       <module fileurl="file://$PROJECT_DIR$/05_ArraysAndCollections/Rainbow/Rainbow.iml" filepath="$PROJECT_DIR$/05_ArraysAndCollections/Rainbow/Rainbow.iml" />
@@ -21,7 +21,6 @@
       <module fileurl="file://$PROJECT_DIR$/05_ArraysAndCollections/TemperaturePatientHospital/TemperaturePatientHospital.iml" filepath="$PROJECT_DIR$/05_ArraysAndCollections/TemperaturePatientHospital/TemperaturePatientHospital.iml" />
       <module fileurl="file://$PROJECT_DIR$/05_ArraysAndCollections/ToDoList/ToDoList.iml" filepath="$PROJECT_DIR$/05_ArraysAndCollections/ToDoList/ToDoList.iml" />
       <module fileurl="file://$PROJECT_DIR$/05_ArraysAndCollections/TreeSetExperiments/TreeSetExperiments.iml" filepath="$PROJECT_DIR$/05_ArraysAndCollections/TreeSetExperiments/TreeSetExperiments.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/java_basics.iml" filepath="$PROJECT_DIR$/.idea/java_basics.iml" />
     </modules>
   </component>
 </project>
