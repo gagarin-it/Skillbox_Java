@@ -2,7 +2,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Calendar;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Main {
@@ -12,14 +15,16 @@ public class Main {
 
   public static void main(String[] args) {
     ArrayList<Employee> staff = loadStaffFromFile();
-    Collections.sort(staff, (o1, o2) -> {
-      int salarySort = o1.getSalary().compareTo(o2.getSalary());
-      if (salarySort != 0){
-        return salarySort;
-      }
-      return o1.getName().compareToIgnoreCase(o2.getName());
-    });
-    staff.forEach(System.out::println);
+    Date dateAfter = new GregorianCalendar(2017, Calendar.JANUARY, 1).getTime();
+    Date dateBefore = new GregorianCalendar(2018, Calendar.JANUARY, 1).getTime();
+//    Collections.sort(staff, (o1, o2) -> {
+//      int salarySort = o1.getSalary().compareTo(o2.getSalary());
+//      if (salarySort != 0){
+//        return salarySort;
+//      }
+//      return o1.getName().compareToIgnoreCase(o2.getName());
+//    });
+//    staff.forEach(System.out::println);
 //        staff.forEach(System.out::println);
 //        System.out.println("_________________________");
 //        staff.forEach(e -> e.setSalary(e.getSalary() + 10000));
@@ -28,11 +33,10 @@ public class Main {
 //        staff.stream().filter(e -> e.getSalary() >= 99000).forEach(System.out::println);
 //        staff.stream().min(Comparator.comparing(Employee::getSalary)).ifPresent(System.out::println);
 //        System.out.println("_________________________");
-//    staff.stream().filter(
-//        employee -> employee.getWorkStart().after(new GregorianCalendar(2017, Calendar.JANUARY, 1).getTime())
-//            && employee.getWorkStart().before(new GregorianCalendar(2018, Calendar.JANUARY, 1).getTime()))
-//        .max(Comparator.comparing(Employee::getSalary)).ifPresent(
-//        System.out::println);
+    staff.stream().filter(employee -> employee.getWorkStart().after(dateAfter)
+        && employee.getWorkStart().before(dateBefore))
+        .max(Comparator.comparing(Employee::getSalary)).ifPresent(
+        System.out::println);
 
 
   }
