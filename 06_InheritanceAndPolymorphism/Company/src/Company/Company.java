@@ -8,7 +8,7 @@ public class Company {
 
   private String nameCompany;
   private int income;
-  List<Employee> employees;
+  private List<Employee> employees;
 
   public Company(String nameCompany) {
     this.employees = new ArrayList<>();
@@ -20,16 +20,8 @@ public class Company {
     employees.add(employee);
   }
 
-  public void hireAll(Employee employee, int countEmployee) {
-    for (int i = 0; i < countEmployee; i++) {
-      if (employee.getClass().getName().equals("Company.Manager")) {
-        hire(new Manager());
-      } else if (employee.getClass().getName().equals("Company.Operator")) {
-        hire(new Operator());
-      } else {
-        hire(new TopManager(Company.this));
-      }
-    }
+  public void hireAll(List<Employee> employees) {
+  this.employees.addAll(employees);
   }
 
   public void fire() {
