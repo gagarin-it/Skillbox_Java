@@ -1,5 +1,4 @@
 import core.Station;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -113,7 +112,7 @@ public class RouteCalculator
                 }
             }
         }
-        return route;
+        return route.size() > 0 ? route : null;
     }
 
     private boolean isConnected(Station station1, Station station2)

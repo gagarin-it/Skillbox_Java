@@ -1,24 +1,22 @@
 import core.Line;
 import core.Station;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
-public class Main
-{
-    private static String dataFile = "src/main/resources/map.json";
+public class Main {
+
+    private static String dataFile = "08_ExceptionsDebuggingAndTesting/SPBMetro/src/main/resources/map.json";
     private static Scanner scanner;
 
     private static StationIndex stationIndex;
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         RouteCalculator calculator = getRouteCalculator();
 
         System.out.println("Программа расчёта маршрутов метрополитена Санкт-Петербурга\n");
