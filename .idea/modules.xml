@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/03_ObjectsAndClasses/Cat/Cat.iml" filepath="$PROJECT_DIR$/03_ObjectsAndClasses/Cat/Cat.iml" />
       <module fileurl="file://$PROJECT_DIR$/06_InheritanceAndPolymorphism/ClientsBank/ClientsBank.iml" filepath="$PROJECT_DIR$/06_InheritanceAndPolymorphism/ClientsBank/ClientsBank.iml" />
       <module fileurl="file://$PROJECT_DIR$/06_InheritanceAndPolymorphism/Company/Company.iml" filepath="$PROJECT_DIR$/06_InheritanceAndPolymorphism/Company/Company.iml" />
+      <module fileurl="file://$PROJECT_DIR$/08_ExceptionsDebuggingAndTesting/ConsoleCustomerList/ConsoleCustomerList.iml" filepath="$PROJECT_DIR$/08_ExceptionsDebuggingAndTesting/ConsoleCustomerList/ConsoleCustomerList.iml" />
       <module fileurl="file://$PROJECT_DIR$/05_ArraysAndCollections/DoubleArray/DoubleArray.iml" filepath="$PROJECT_DIR$/05_ArraysAndCollections/DoubleArray/DoubleArray.iml" />
       <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/GeometryCalculator/GeometryCalculator.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/GeometryCalculator/GeometryCalculator.iml" />
       <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/HumanitarianSupport/HumanitarianSupport.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/HumanitarianSupport/HumanitarianSupport.iml" />
