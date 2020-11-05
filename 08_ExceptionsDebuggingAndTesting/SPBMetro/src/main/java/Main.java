@@ -5,35 +5,48 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class Main {
 
-    private static String dataFile = "08_ExceptionsDebuggingAndTesting/SPBMetro/src/main/resources/map.json";
+    private static Logger logger;
+    private static String dataFile = "src/main/resources/map.json";
     private static Scanner scanner;
 
     private static StationIndex stationIndex;
 
     public static void main(String[] args) {
         RouteCalculator calculator = getRouteCalculator();
+        logger = LogManager.getRootLogger();
 
         System.out.println("Программа расчёта маршрутов метрополитена Санкт-Петербурга\n");
         scanner = new Scanner(System.in);
-        for(;;)
-        {
-            Station from = takeStation("Введите станцию отправления:");
-            Station to = takeStation("Введите станцию назначения:");
+        for (; ; ) {
+            try {
+                Station from = takeStation("Введите станцию отправления:");
+                logger.info("Выбрана станция отправления: " + from);
+                Station to = takeStation("Введите станцию назначения:");
+                logger.info("Выбрана станция назначения: " + to);
 
-            List<Station> route = calculator.getShortestRoute(from, to);
-            System.out.println("Маршрут:");
-            printRoute(route);
+                List<Station> route = calculator.getShortestRoute(from, to);
+                System.out.println("Маршрут:");
+                printRoute(route);
 
-            System.out.println("Длительность: " +
-                RouteCalculator.calculateDuration(route) + " минут");
+                System.out.println("Длительность: " +
+                    RouteCalculator.calculateDuration(route) + " минут");
+
+                throw new IllegalArgumentException(
+                    "Выкид ошибки IllegalArgumentException, после подсчёта времени");
+
+            } catch (IllegalArgumentException ex) {
+                logger.error("Ошибка - " + ex.getMessage());
+            }
         }
-    }
+        }
 
     private static RouteCalculator getRouteCalculator()
     {
@@ -63,14 +76,14 @@ public class Main {
 
     private static Station takeStation(String message)
     {
-        for(;;)
-        {
+        for(;;) {
             System.out.println(message);
             String line = scanner.nextLine().trim();
             Station station = stationIndex.getStation(line);
-            if(station != null) {
+            if (station != null) {
                 return station;
             }
+            logger.warn("Станция не найдена: " + line);
             System.out.println("Станция не найдена :(");
         }
     }
@@ -94,6 +107,7 @@ public class Main {
         }
         catch(Exception ex) {
             ex.printStackTrace();
+
         }
     }
 
@@ -158,6 +172,7 @@ public class Main {
         }
         catch (Exception ex) {
             ex.printStackTrace();
+
         }
         return builder.toString();
     }
