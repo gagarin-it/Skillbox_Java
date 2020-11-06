@@ -31,7 +31,6 @@ public class Main {
                 return Files.size(f);
               } catch (IOException e) {
                 e.getStackTrace();
-                System.out.println("Размер файла недоступен");
                 return 0L;
               }
             })
