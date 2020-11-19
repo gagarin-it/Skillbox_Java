@@ -8,10 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="spb-metro" />
         <module name="CopyFolder" />
+        <module name="ParserCSV" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="15">
       <module name="CopyFolder" target="8" />
+      <module name="ParserCSV" target="15" />
       <module name="spb-metro" target="8" />
     </bytecodeTargetLevel>
   </component>
