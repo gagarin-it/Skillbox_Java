@@ -7,8 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="MOSmetro" />
+        <module name="TrainingMySQL" />
         <module name="ParserCSV" />
-        <module name="MSKMetro" />
         <module name="spb-metro" />
         <module name="CopyFolder" />
         <module name="ParserHTML" />
@@ -17,10 +17,10 @@
     <bytecodeTargetLevel target="15">
       <module name="CopyFolder" target="8" />
       <module name="MOSmetro" target="15" />
-      <module name="MSKMetro" target="15" />
       <module name="ParserCSV" target="15" />
       <module name="ParserHTML" target="15" />
       <module name="spb-metro" target="8" />
+      <module name="TrainingMySQL" target="15" />
     </bytecodeTargetLevel>
   </component>
 </project>

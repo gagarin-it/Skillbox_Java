@@ -28,6 +28,7 @@
       <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/StringExperiments/StringExperiments.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/StringExperiments/StringExperiments.iml" />
       <module fileurl="file://$PROJECT_DIR$/05_ArraysAndCollections/TemperaturePatientHospital/TemperaturePatientHospital.iml" filepath="$PROJECT_DIR$/05_ArraysAndCollections/TemperaturePatientHospital/TemperaturePatientHospital.iml" />
       <module fileurl="file://$PROJECT_DIR$/05_ArraysAndCollections/ToDoList/ToDoList.iml" filepath="$PROJECT_DIR$/05_ArraysAndCollections/ToDoList/ToDoList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10_SQLAndHibernate/TrainingMySQL/TrainingMySQL.iml" filepath="$PROJECT_DIR$/10_SQLAndHibernate/TrainingMySQL/TrainingMySQL.iml" />
       <module fileurl="file://$PROJECT_DIR$/05_ArraysAndCollections/TreeSetExperiments/TreeSetExperiments.iml" filepath="$PROJECT_DIR$/05_ArraysAndCollections/TreeSetExperiments/TreeSetExperiments.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/java_basics.iml" filepath="$PROJECT_DIR$/.idea/java_basics.iml" />
       <module fileurl="file://$PROJECT_DIR$/08_ExceptionsDebuggingAndTesting/SPBMetro/spb-metro.iml" filepath="$PROJECT_DIR$/08_ExceptionsDebuggingAndTesting/SPBMetro/spb-metro.iml" />
