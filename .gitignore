@@ -156,4 +156,7 @@ $RECYCLE.BIN/
 */target/*
 */target/
 /target/
+target/
 
+# My files
+docker.txt
