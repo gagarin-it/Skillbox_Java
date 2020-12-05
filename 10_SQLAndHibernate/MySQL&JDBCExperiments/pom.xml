@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>gagarin.developer</groupId>
-  <artifactId>TrainingMySQL</artifactId>
+  <artifactId>MySQLandJDBCExperiments</artifactId>
   <version>1.0-SNAPSHOT</version>
   <build>
     <plugins>
@@ -39,7 +39,8 @@
           </descriptorRefs>
         </configuration>
       </plugin>
-    </plugins></build>
+    </plugins>
+  </build>
 
   <dependencies>
     <dependency>
