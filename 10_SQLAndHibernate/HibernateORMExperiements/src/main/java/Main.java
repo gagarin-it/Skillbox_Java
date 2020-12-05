@@ -18,6 +18,10 @@ public class Main {
       Course course = session.get(Course.class,i);
       System.out.printf("%-35s: %d человек%n", course.getName(),course.getStudentsCount());
     }
+    for(int i = 1; i < 101;i++){
+      Student student = session.get(Student.class,i);
+      System.out.println(student);
+    }
     sessionFactory.close();
   }
 }
