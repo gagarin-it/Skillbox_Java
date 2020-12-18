@@ -1,5 +1,8 @@
+import entities.*;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -14,14 +17,14 @@ public class Main {
     SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
 
     Session session = sessionFactory.openSession();
-    for(int i = 1; i < 47;i++){
-      Course course = session.get(Course.class,i);
-      System.out.printf("%-35s: %d человек%n", course.getName(),course.getStudentsCount());
-    }
-    for(int i = 1; i < 101;i++){
-      Student student = session.get(Student.class,i);
-      System.out.println(student);
-    }
+    Transaction transaction = session.beginTransaction();
+
+    Course course = session.get(Course.class, 1);
+    List<Subscription> subscriptions = course.getSubscriptions();
+    subscriptions.stream().map(Subscription::getStudent).forEach(System.out::println);
+
+    transaction.commit();
     sessionFactory.close();
   }
+
 }
