@@ -23,7 +23,7 @@ public class Teacher {
 
   private int age;
 
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "teacher")
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher")
   private List<Course> courses;
 
   public int getId() {

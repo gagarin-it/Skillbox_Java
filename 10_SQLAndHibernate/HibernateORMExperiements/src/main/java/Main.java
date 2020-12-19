@@ -1,4 +1,5 @@
-import entities.*;
+import entities.Course;
+import entities.PurchaseList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,9 +20,11 @@ public class Main {
     Session session = sessionFactory.openSession();
     Transaction transaction = session.beginTransaction();
 
-    Course course = session.get(Course.class, 1);
-    List<Subscription> subscriptions = course.getSubscriptions();
-    subscriptions.stream().map(Subscription::getStudent).forEach(System.out::println);
+    String hql =
+        "From " + PurchaseList.class.getSimpleName() + " Where price > 120000" + " Order by price desc";
+    List<PurchaseList> pl = session.createQuery(hql).getResultList();
+    pl.stream().map(p -> p.getCourseName() + " - " + p.getStudentName())
+        .forEach(System.out::println);
 
     transaction.commit();
     sessionFactory.close();

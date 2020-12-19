@@ -1,16 +1,25 @@
 package entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "entities.PurchaseList")
-public class PurchaseList {
+@Table(name = "PurchaseList")
+public class PurchaseList implements Serializable {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "student_name")
   private String studentName;
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "course_name")
   private String courseName;
 

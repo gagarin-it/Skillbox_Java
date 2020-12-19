@@ -1,7 +1,6 @@
 package entities;
 
 import java.time.LocalDateTime;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,10 +18,10 @@ public class Subscription {
   @Column(name = "subscription_date")
   private LocalDateTime subscriptionDate;
 
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
   private Student student;
 
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
   private Course course;
 
   public LocalDateTime getSubscriptionDate() {

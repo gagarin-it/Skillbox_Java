@@ -35,7 +35,7 @@ public class Course {
 
   private String description;
 
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
   private Teacher teacher;
 
   @Column(name = "students_count", nullable = true)
@@ -47,13 +47,13 @@ public class Course {
   private float pricePerHour;
 
 
-  @ManyToMany(cascade = CascadeType.ALL)
+  @ManyToMany
   @JoinTable(name = "Subscriptions", joinColumns = {
       @JoinColumn(name = "course_id")}, inverseJoinColumns = {@JoinColumn(name = "student_id")})
   private List<Student> students;
 
 
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "course")
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
   private List<Subscription> subscriptions;
 
   public Integer getId() {

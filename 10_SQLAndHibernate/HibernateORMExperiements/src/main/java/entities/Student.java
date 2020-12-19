@@ -2,7 +2,6 @@ package entities;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,7 +26,7 @@ public class Student {
   @Column(name = "registration_date")
   private LocalDateTime registrationDate;
 
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "student")
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
   private List<Subscription> subscriptions;
 
   public Integer getId() {
