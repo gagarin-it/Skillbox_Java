@@ -1,5 +1,8 @@
+import static org.hibernate.id.PersistentIdentifierGenerator.PK;
+
 import entities.Course;
 import entities.PurchaseList;
+import entities.Subscription;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
