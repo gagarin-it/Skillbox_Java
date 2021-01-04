@@ -1,9 +1,7 @@
-import static org.hibernate.id.PersistentIdentifierGenerator.PK;
-
-import entities.Course;
-import entities.PurchaseList;
-import entities.Subscription;
+import entities.*;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -23,11 +21,28 @@ public class Main {
     Session session = sessionFactory.openSession();
     Transaction transaction = session.beginTransaction();
 
-    String hql =
-        "From " + PurchaseList.class.getSimpleName() + " Where price > 120000" + " Order by price desc";
-    List<PurchaseList> pl = session.createQuery(hql).getResultList();
-    pl.stream().map(p -> p.getCourseName() + " - " + p.getStudentName())
-        .forEach(System.out::println);
+    String hqlCourses =
+        "From " + Course.class.getSimpleName();
+    List<Course> courses = session.createQuery(hqlCourses).getResultList();
+    Map<String, Integer> mapCourses =
+        courses.stream().collect(Collectors.toMap(Course::getName, Course::getId));
+
+    String hqlStudents =
+        "From " + Student.class.getSimpleName();
+    List<Student> students = session.createQuery(hqlStudents).getResultList();
+    Map<String, Integer> mapStudents =
+        students.stream().collect(Collectors.toMap(Student::getName, Student::getId));
+
+    String hqlPurchaseList =
+        "From " + PurchaseList.class.getSimpleName();
+    List<PurchaseList> purchaseList = session.createQuery(hqlPurchaseList).getResultList();
+
+    for (PurchaseList pl : purchaseList){
+      LinkedPurchaseList linkedPurchase = new LinkedPurchaseList();
+      linkedPurchase.setStudentId(mapStudents.get(pl.getStudentName()));
+      linkedPurchase.setCourseId(mapCourses.get(pl.getCourseName()));
+      session.save(linkedPurchase);
+    }
 
     transaction.commit();
     sessionFactory.close();

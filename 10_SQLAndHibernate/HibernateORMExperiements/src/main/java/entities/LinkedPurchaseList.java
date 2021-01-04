@@ -14,12 +14,10 @@ import javax.persistence.Table;
 public class LinkedPurchaseList implements Serializable {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "student_id")
   private Integer studentId;
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "course_id")
   private Integer courseId;
 

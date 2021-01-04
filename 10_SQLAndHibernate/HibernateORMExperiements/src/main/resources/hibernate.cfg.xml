@@ -5,7 +5,7 @@
     <session-factory>
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/skillbox?useSSL=false</property>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/skillbox?useSSL=true</property>
         <property name="connection.username">user</property>
         <property name="connection.password">test</property>
         <!-- JDBC connection pool settings ... using built-in test pool -->
@@ -22,6 +22,6 @@
         <mapping class="entities.Teacher"/>
         <mapping class="entities.PurchaseList"/>
         <mapping class="entities.Subscription"/>
-        <mapping class="LinkedPurchaseList"/>
+        <mapping class="entities.LinkedPurchaseList"/>
     </session-factory>
 </hibernate-configuration>
