@@ -1,42 +1,39 @@
+import com.google.common.collect.Lists;
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
-public class Main
-{
-    private static int newWidth = 300;
-    public static void main(String[] args)
-    {
-        String srcFolder = "E:\\Skillbox\\ImageResizerJava\\src";
-        String dstFolder = "E:\\Skillbox\\ImageResizerJava\\dst";
+public class Main {
 
-        File srcDir = new File(srcFolder);
-        int cores = Runtime.getRuntime().availableProcessors();
-        long start = System.currentTimeMillis();
+  private static int newWidth = 300;
+  private static int amountOfCores = Runtime.getRuntime().availableProcessors();
 
-        File[] files = srcDir.listFiles();
 
-        int firstIndex = files.length / cores;
-        int secondIndex = firstIndex * 2;
-        int thirdIndex = firstIndex * 3;
+  public static void main(String[] args) {
+    String srcFolder = "E:\\Skillbox\\ImageResizerJava\\src";
+    String dstFolder = "E:\\Skillbox\\ImageResizerJava\\dst";
 
-        File[] files1 = new File[firstIndex];
-        System.arraycopy(files,0,files1,0,files1.length);
-        ImageResizer resizer1 = new ImageResizer(files1,newWidth,dstFolder,start);
-        new Thread(resizer1).start();
+    List<File> files = Arrays.asList(Objects.requireNonNull(new File(srcFolder).listFiles()));
+    int sizeList = files.size() / amountOfCores + 1;
 
-        File[] files2 = new File[firstIndex];
-        System.arraycopy(files,firstIndex,files2,0,files2.length);
-        ImageResizer resizer2 = new ImageResizer(files2,newWidth,dstFolder,start);
-        new Thread(resizer2).start();
+    List<List<File>> tep = splitList(files, sizeList);
+    startThread(tep,dstFolder,amountOfCores);
+  }
 
-        File[] files3 = new File[firstIndex];
-        System.arraycopy(files,secondIndex,files3,0,files3.length);
-        ImageResizer resizer3 = new ImageResizer(files3,newWidth,dstFolder,start);
-        new Thread(resizer3).start();
-
-        File[] files4 = new File[files.length - files1.length - files2.length - files3.length];
-        System.arraycopy(files,thirdIndex,files4,0,files4.length);
-        ImageResizer resizer4 = new ImageResizer(files4,newWidth,dstFolder,start);
-        new Thread(resizer4).start();
-
+  public static void startThread(List<List<File>> listOfFilesSCR, String dstFolder, int amountOfCores) {
+    long startTime = System.currentTimeMillis();
+    if (amountOfCores <= 0) {
+      throw new IllegalArgumentException("Invalid amount of cores: " + amountOfCores);
     }
+    for (int i = 0; i < amountOfCores; i++) {
+      System.out.println(listOfFilesSCR.get(i).size());
+      ImageResizer resizer = new ImageResizer(listOfFilesSCR.get(i), newWidth, dstFolder, startTime);
+      new Thread(resizer).start();
+    }
+  }
+
+  public static List<List<File>> splitList(List<File> listFiles, int sizeList) {
+    return Lists.partition(listFiles, sizeList);
+  }
 }
