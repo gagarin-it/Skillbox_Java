@@ -1,7 +1,7 @@
 public class Account
 {
     private volatile long money;
-    private volatile String accNumber;
+    private String accNumber;
     private volatile boolean withoutBlockAcc;
 
 
@@ -23,7 +23,7 @@ public class Account
         return accNumber;
     }
 
-    public synchronized void setAccNumber(String accNumber) {
+    public void setAccNumber(String accNumber) {
         this.accNumber = accNumber;
     }
 

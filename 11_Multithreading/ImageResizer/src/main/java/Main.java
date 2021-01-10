@@ -1,39 +1,45 @@
-import com.google.common.collect.Lists;
 import java.io.File;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class Main {
 
   private static int newWidth = 300;
   private static int amountOfCores = Runtime.getRuntime().availableProcessors();
+  private static long startTime = System.currentTimeMillis();
 
 
   public static void main(String[] args) {
     String srcFolder = "E:\\Skillbox\\ImageResizerJava\\src";
     String dstFolder = "E:\\Skillbox\\ImageResizerJava\\dst";
 
-    List<File> files = Arrays.asList(Objects.requireNonNull(new File(srcFolder).listFiles()));
-    int sizeList = files.size() / amountOfCores + 1;
-
-    List<List<File>> tep = splitList(files, sizeList);
-    startThread(tep,dstFolder,amountOfCores);
+    File[] listOfFilesSCR = new File(srcFolder).listFiles();
+    startThreads(initializingThreadsWithFiles(createThreads(amountOfCores), listOfFilesSCR, dstFolder, startTime));
   }
 
-  public static void startThread(List<List<File>> listOfFilesSCR, String dstFolder, int amountOfCores) {
-    long startTime = System.currentTimeMillis();
+  public static Thread[] initializingThreadsWithFiles(Thread[] threads, File[] listOfFilesSCR, String dstFolder,
+      long startTime) {
+    Thread[] threadsTemp = new Thread[threads.length];
+    for (int i = 0; i < threads.length; i++) {
+      int threadNumber = i;
+      File[] filesPerCore = IntStream.range(0, listOfFilesSCR.length)
+          .filter(fileNo -> fileNo % threads.length == threadNumber)
+          .mapToObj(n -> listOfFilesSCR[n])
+          .toArray(File[]::new);
+      threadsTemp[i] = new Thread(new ImageResizer(threadNumber, filesPerCore, newWidth, dstFolder, startTime));
+    }
+    return threadsTemp;
+  }
+
+  public static void startThreads(Thread[] threads) {
+    Arrays.stream(threads).forEach(Thread::start);
+  }
+
+  public static Thread[] createThreads(int amountOfCores) {
     if (amountOfCores <= 0) {
       throw new IllegalArgumentException("Invalid amount of cores: " + amountOfCores);
+    } else {
+      return new Thread[amountOfCores];
     }
-    for (int i = 0; i < amountOfCores; i++) {
-      System.out.println(listOfFilesSCR.get(i).size());
-      ImageResizer resizer = new ImageResizer(listOfFilesSCR.get(i), newWidth, dstFolder, startTime);
-      new Thread(resizer).start();
-    }
-  }
-
-  public static List<List<File>> splitList(List<File> listFiles, int sizeList) {
-    return Lists.partition(listFiles, sizeList);
   }
 }

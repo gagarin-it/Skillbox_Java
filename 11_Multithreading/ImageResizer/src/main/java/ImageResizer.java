@@ -1,6 +1,5 @@
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.List;
 import javax.imageio.ImageIO;
 import org.imgscalr.Scalr;
 import org.imgscalr.Scalr.Method;
@@ -8,16 +7,18 @@ import org.imgscalr.Scalr.Mode;
 
 public class ImageResizer implements Runnable {
 
-  private List<File> files;
+  private File[] files;
   private int newWidth;
   private String dstFolder;
   private long start;
+  private int threadNumber;
 
-  public ImageResizer(List<File> files, int newWidth, String dstFolder, long start) {
+  public ImageResizer(int threadNumber, File[] files, int newWidth, String dstFolder, long start) {
     this.files = files;
     this.newWidth = newWidth;
     this.dstFolder = dstFolder;
     this.start = start;
+    this.threadNumber = threadNumber;
   }
 
   @Override
@@ -42,5 +43,45 @@ public class ImageResizer implements Runnable {
       ex.printStackTrace();
     }
     System.out.println("Finished thread after start: " + (System.currentTimeMillis() - start) + " ms");
+  }
+
+  public File[] getFiles() {
+    return files;
+  }
+
+  public void setFiles(File[] files) {
+    this.files = files;
+  }
+
+  public int getNewWidth() {
+    return newWidth;
+  }
+
+  public void setNewWidth(int newWidth) {
+    this.newWidth = newWidth;
+  }
+
+  public String getDstFolder() {
+    return dstFolder;
+  }
+
+  public void setDstFolder(String dstFolder) {
+    this.dstFolder = dstFolder;
+  }
+
+  public long getStart() {
+    return start;
+  }
+
+  public void setStart(long start) {
+    this.start = start;
+  }
+
+  public int getThreadNumber() {
+    return threadNumber;
+  }
+
+  public void setThreadNumber(int threadNumber) {
+    this.threadNumber = threadNumber;
   }
 }

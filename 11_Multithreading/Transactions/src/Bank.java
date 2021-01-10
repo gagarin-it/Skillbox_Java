@@ -31,7 +31,7 @@ public class Bank
      */
     public void transfer(String fromAccountNum, String toAccountNum, long amount)
     {
-        if(accounts.get(fromAccountNum).isWithoutBlockAcc() && accounts.get(fromAccountNum).isWithoutBlockAcc()) {
+        if(accounts.get(fromAccountNum).isWithoutBlockAcc() && accounts.get(toAccountNum).isWithoutBlockAcc()) {
             accounts.get(fromAccountNum).setMoney(accounts.get(fromAccountNum).getMoney() - amount);
             accounts.get(toAccountNum).setMoney(accounts.get(toAccountNum).getMoney() + amount);
 
