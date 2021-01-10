@@ -1,8 +1,8 @@
 public class Account
 {
-    private volatile long money;
+    private long money;
     private String accNumber;
-    private volatile boolean withoutBlockAcc;
+    private boolean withoutBlockAcc;
 
 
     public Account(String accNumber, long money) {

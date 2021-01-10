@@ -5,34 +5,67 @@ public class Main {
   public static void main(String[] args) {
     Bank bank = new Bank();
     HashMap<String, Account> accounts = new HashMap<>();
-    accounts.put("1", new Account("1", 100000));
-    accounts.put("2", new Account("2", 200000));
-    accounts.put("3", new Account("3", 300000));
-    accounts.put("4", new Account("4", 400000));
+    accounts.put("1", new Account("1", 110000));
+    accounts.put("2", new Account("2", 220000));
+    accounts.put("3", new Account("3", 330000));
+    accounts.put("4", new Account("4", 440000));
+    accounts.put("5", new Account("5", 150000));
+    accounts.put("6", new Account("6", 260000));
+    accounts.put("7", new Account("7", 370000));
+    accounts.put("8", new Account("8", 480000));
+    accounts.put("9", new Account("9", 190000));
+    accounts.put("10", new Account("10", 150000));
+    accounts.put("11", new Account("11", 250000));
+    accounts.put("12", new Account("12", 350000));
+    accounts.put("13", new Account("13", 450000));
     bank.setAccounts(accounts);
 
-    System.out.println("Сумма на счёте в банке: " + bank.getAccounts().values().stream().mapToLong(Account::getMoney).sum());
+    System.out.println(
+        "Сумма на счётах в банке: " + bank.getAccounts().values().stream().mapToLong(Account::getMoney).sum()
+            + " руб.");
 
+    bank.getAccounts()
+        .forEach((k, v) -> System.out.printf("Баланс счёта №%s: %d руб.\n", v.getAccNumber(), v.getMoney()));
+
+    bank.transfer("1", "2", 40000);
     System.out.println("Баланс счёта №1: " + bank.getBalance("1"));
     System.out.println("Баланс счёта №2: " + bank.getBalance("2"));
-    System.out.println("Баланс счёта №3: " + bank.getBalance("3"));
-    System.out.println("Баланс счёта №4: " + bank.getBalance("4"));
 
-    bank.transfer("1","2",40000);
+    bank.transfer("4", "1", 60000);
     System.out.println("Баланс счёта №1: " + bank.getBalance("1"));
-    System.out.println("Баланс счёта №2: " + bank.getBalance("2"));
+    System.out.println("Баланс счёта №4: " + bank.getBalance("4"));
+    bank.transfer("4", "1", 60000);
+    System.out.println("Баланс счёта №1: " + bank.getBalance("1"));
+    System.out.println("Баланс счёта №4: " + bank.getBalance("4"));
+    bank.transfer("4", "1", 60000);
+    System.out.println("Баланс счёта №1: " + bank.getBalance("1"));
+    System.out.println("Баланс счёта №4: " + bank.getBalance("4"));
+    bank.transfer("13", "1", 60000);
+    System.out.println("Баланс счёта №1: " + bank.getBalance("1"));
+    System.out.println("Баланс счёта №13: " + bank.getBalance("13"));
+    bank.transfer("12", "11", 60000);
+    System.out.println("Баланс счёта №11: " + bank.getBalance("11"));
+    System.out.println("Баланс счёта №12: " + bank.getBalance("12"));
+    bank.transfer("11", "4", 60000);
+    System.out.println("Баланс счёта №1: " + bank.getBalance("11"));
+    System.out.println("Баланс счёта №4: " + bank.getBalance("12"));
+    bank.transfer("8", "1", 60000);
+    System.out.println("Баланс счёта №1: " + bank.getBalance("1"));
+    System.out.println("Баланс счёта №8: " + bank.getBalance("8"));
+    bank.transfer("12", "11", 60000);
+    System.out.println("Баланс счёта №11: " + bank.getBalance("11"));
+    System.out.println("Баланс счёта №12: " + bank.getBalance("12"));
+    bank.transfer("11", "4", 60000);
+    System.out.println("Баланс счёта №1: " + bank.getBalance("11"));
+    System.out.println("Баланс счёта №4: " + bank.getBalance("12"));
+    bank.transfer("11", "4", 60000);
+    System.out.println("Баланс счёта №1: " + bank.getBalance("11"));
+    System.out.println("Баланс счёта №4: " + bank.getBalance("12"));
+    
+    System.out.println(
+        "Сумма на счётах в банке: " + bank.getAccounts().values().stream().mapToLong(Account::getMoney).sum()
+            + " руб.");
 
-    bank.transfer("4","1",60000);
-    System.out.println("Баланс счёта №1: " + bank.getBalance("1"));
-    System.out.println("Баланс счёта №4: " + bank.getBalance("4"));
-    bank.transfer("4","1",60000);
-    System.out.println("Баланс счёта №1: " + bank.getBalance("1"));
-    System.out.println("Баланс счёта №4: " + bank.getBalance("4"));
-    bank.transfer("4","1",60000);
-    System.out.println("Баланс счёта №1: " + bank.getBalance("1"));
-    System.out.println("Баланс счёта №4: " + bank.getBalance("4"));
-
-      System.out.println("Сумма на счёте в банке: " + bank.getAccounts().values().stream().mapToLong(Account::getMoney).sum());
   }
 
 }
