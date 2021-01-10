@@ -37,6 +37,11 @@ public class Main {
       bank.transfer("4", "1", 60000);
       System.out.println("Баланс счёта №1: " + bank.getBalance("1"));
       System.out.println("Баланс счёта №4: " + bank.getBalance("4"));
+      try {
+        Thread.sleep(10000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
     });
     oneThead.start();
     oneThead.join();
@@ -51,6 +56,11 @@ public class Main {
       bank.transfer("12", "11", 60000);
       System.out.println("Баланс счёта №11: " + bank.getBalance("11"));
       System.out.println("Баланс счёта №12: " + bank.getBalance("12"));
+      try {
+        Thread.sleep(10000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
     });
     twoThead.start();
     twoThead.join();
@@ -65,6 +75,12 @@ public class Main {
       bank.transfer("12", "11", 60000);
       System.out.println("Баланс счёта №11: " + bank.getBalance("11"));
       System.out.println("Баланс счёта №12: " + bank.getBalance("12"));
+      try {
+        Thread.sleep(10000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+
     });
     threeThead.start();
     threeThead.join();
@@ -76,6 +92,12 @@ public class Main {
       bank.transfer("11", "4", 60000);
       System.out.println("Баланс счёта №1: " + bank.getBalance("11"));
       System.out.println("Баланс счёта №4: " + bank.getBalance("12"));
+      try {
+        Thread.sleep(10000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+
     });
     fourThead.start();
     fourThead.join();
