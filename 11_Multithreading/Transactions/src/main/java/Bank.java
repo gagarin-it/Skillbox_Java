@@ -22,37 +22,34 @@ public class Bank
         return random.nextBoolean();
     }
 
-    /**
-     * TODO: реализовать метод. Метод переводит деньги между счетами.
-     * Если сумма транзакции > 50000, то после совершения транзакции,
-     * она отправляется на проверку Службе Безопасности – вызывается
-     * метод isFraud. Если возвращается true, то делается блокировка
-     * счетов (как – на ваше усмотрение)
-     */
-    public synchronized void transfer(String fromAccountNum, String toAccountNum, long amount)
+    public void transfer(String fromAccountNum, String toAccountNum, long amount)
     {
-        if(accounts.get(fromAccountNum).isWithoutBlockAcc() && accounts.get(toAccountNum).isWithoutBlockAcc()) {
-            accounts.get(fromAccountNum).setMoney(accounts.get(fromAccountNum).getMoney() - amount);
-            accounts.get(toAccountNum).setMoney(accounts.get(toAccountNum).getMoney() + amount);
+        synchronized (this) {
+                    if(accounts.get(fromAccountNum).getMoney() - amount > 0) {
+                        if (accounts.get(fromAccountNum).isWithoutBlockAcc() && accounts.get(toAccountNum)
+                        .isWithoutBlockAcc()) {
+                        accounts.get(fromAccountNum).setMoney(accounts.get(fromAccountNum).getMoney() - amount);
+                        accounts.get(toAccountNum).setMoney(accounts.get(toAccountNum).getMoney() + amount);
 
-            if (amount > 50000) {
-                try {
-                    if (isFraud(fromAccountNum, toAccountNum, amount)) {
-                        accounts.get(fromAccountNum).setWithoutBlockAcc(false);
-                        accounts.get(toAccountNum).setWithoutBlockAcc(false);
+                        if (amount > 50000) {
+                            try {
+                                if (isFraud(fromAccountNum, toAccountNum, amount)) {
+                                    accounts.get(fromAccountNum).setWithoutBlockAcc(false);
+                                    accounts.get(toAccountNum).setWithoutBlockAcc(false);
+                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    } else {
+                        System.out.println("Один или оба счёта заблокированны");
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            System.out.println("Один или оба счёта заблокированны");
+                } else {
+                        System.out.println("На счёте списания недостаточно средств");
+                    }
         }
     }
 
-    /**
-     * TODO: реализовать метод. Возвращает остаток на счёте.
-     */
     public long getBalance(String accountNum)
     {
         return accounts.get(accountNum).getMoney();
