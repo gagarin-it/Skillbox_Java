@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Тест класса Account")
-public class AccountTest {
+class AccountTest {
 
   private Account account;
   private static final String NOT_EXPECTED_BALANCE_MESSAGE = "Баланс счёта не соответствует ожидаемому";

@@ -1,5 +1,8 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
@@ -13,11 +16,13 @@ class BankTest {
   private static final String NOT_EXPECTED_BALANCE_ACC_MESSAGE = "Баланс счета не соответствует ожидаемому";
   private static final String NOT_EXPECTED_IS_FRAG_MESSAGE = "Флаг проверки СБ не соответствует ожидаемому";
   private Bank bank;
+  HashMap<String, Account> accounts;
+
 
   @BeforeEach
   protected void setUp() {
-    bank = new Bank();
-    HashMap<String, Account> accounts = new HashMap<>();
+    bank = spy(new Bank());
+    accounts = new HashMap<>();
     for (int i = 0; i < 10; i++) {
       accounts.put("" + i, new Account("" + i, ThreadLocalRandom.current().nextLong(40000, 400000)));
     }
@@ -29,17 +34,10 @@ class BankTest {
   void setAccounts() {
     HashMap<String, Account> accountsExpected = new HashMap<>();
     for (int i = 0; i < 10; i++) {
-      accountsExpected.put("" + i, new Account("" + i, ThreadLocalRandom.current().nextLong(40000, 400000)));
+      accountsExpected.put("" + i, new Account("acc" + i, ThreadLocalRandom.current().nextLong(40000, 400000)));
     }
     bank.setAccounts(accountsExpected);
     assertEquals(accountsExpected, bank.getAccounts(), NOT_EXPECTED_MAP_ACC_MESSAGE);
-  }
-
-  @Test
-  @DisplayName("Метод getBalance")
-  void getBalance() {
-    bank.getAccounts().put("0", new Account("0", 77_777));
-    assertEquals(77_777, bank.getBalance("0"), NOT_EXPECTED_BALANCE_ACC_MESSAGE);
   }
 
   @Test
@@ -54,9 +52,24 @@ class BankTest {
   }
 
   @Test
-  @DisplayName("Метод isFraud")
-  void isFraud() throws InterruptedException {
-    final boolean expected = bank.isFraud("0", "5", 40_000);
-    assertTrue(expected, NOT_EXPECTED_IS_FRAG_MESSAGE);
+  @DisplayName("Метод isFraud с возвратом true")
+  void isFraudTrue() throws InterruptedException {
+    try {
+      when(bank.isFraud("fromAccountNum","toAccountNum",0L)).thenReturn(true);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    assertTrue(bank.isFraud("fromAccountNum","toAccountNum",0L), NOT_EXPECTED_IS_FRAG_MESSAGE);
+  }
+
+  @Test
+  @DisplayName("Метод isFraud с возвратом false")
+  void isFraudFalse() throws InterruptedException {
+    try {
+      when(bank.isFraud("fromAccountNum","toAccountNum",0L)).thenReturn(false);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    assertFalse(bank.isFraud("fromAccountNum","toAccountNum",0L), NOT_EXPECTED_IS_FRAG_MESSAGE);
   }
 }
