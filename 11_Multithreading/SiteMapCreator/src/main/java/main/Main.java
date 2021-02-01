@@ -1,4 +1,4 @@
-package loader;
+package main;
 
 import executor.LinkExecutor;
 import java.io.BufferedReader;
