@@ -1,29 +1,36 @@
-package zone.gagarin.todolist.model;
+package zone.gagarin.todolist.entity;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.persistence.Column;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "tasks")
 public class Task {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @Column
   private String name;
 
-  @Column
   private String description;
 
-  @MapKeyColumn
-  private Map<Integer, Subtask> subtaskMap = new HashMap<>();
+  @OneToMany(mappedBy = "task",cascade = CascadeType.ALL)
+  private Set<Subtask> subtasks;
+
+  public Task() {
+  }
+
+  public Task(String name, String description) {
+    this.name = name;
+    this.description = description;
+  }
 
   public int getId() {
     return id;
@@ -49,12 +56,12 @@ public class Task {
     this.description = description;
   }
 
-  public Map<Integer, Subtask> getSubtaskMap() {
-    return subtaskMap;
+  public Set<Subtask> getSubtasks() {
+    return subtasks;
   }
 
-  public void setSubtaskMap(Map<Integer, Subtask> subtaskMap) {
-    this.subtaskMap = subtaskMap;
+  public void setSubtasks(Set<Subtask> subtasks) {
+    this.subtasks = subtasks;
   }
 
 }
