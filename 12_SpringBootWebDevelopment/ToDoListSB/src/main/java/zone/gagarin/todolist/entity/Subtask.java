@@ -1,6 +1,14 @@
 package zone.gagarin.todolist.entity;
 
-import javax.persistence.*;
+import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "subtasks")
@@ -8,38 +16,49 @@ public class Subtask {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  @Column(name = "id")
+  private Long id;
 
-  private String name;
+  @Column(name = "title")
+  private String title;
 
+  @Column(name = "description")
   private String description;
+
+  @Column(name = "date_time_of_creation")
+  private LocalDateTime dateAndTimeOfCreation;
+
+  @Column(name = "completed")
+  private boolean isCompleted;
 
   @ManyToOne
   @JoinColumn(name = "task_id")
   private Task task;
 
   public Subtask() {
+    this.dateAndTimeOfCreation = LocalDateTime.now();
   }
 
-  public Subtask(String name, String description) {
-    this.name = name;
+  public Subtask(String title, String description, boolean isCompleted) {
+    this.title = title;
     this.description = description;
+    this.dateAndTimeOfCreation = LocalDateTime.now();
   }
 
-  public int getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getTitle() {
+    return title;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public String getDescription() {
@@ -50,11 +69,30 @@ public class Subtask {
     this.description = description;
   }
 
-  public Task getTask() {
-    return task;
+  public LocalDateTime getDateAndTimeOfCreation() {
+    return dateAndTimeOfCreation;
   }
 
-  public void setTask(Task task) {
-    this.task = task;
+  public void setDateAndTimeOfCreation(LocalDateTime dateAndTimeOfCreation) {
+    this.dateAndTimeOfCreation = dateAndTimeOfCreation;
+  }
+
+  public boolean isCompleted() {
+    return isCompleted;
+  }
+
+  public void setCompleted(boolean completed) {
+    isCompleted = completed;
+  }
+
+  @Override
+  public String toString() {
+    return "Task{" +
+        "id=" + id +
+        ", title='" + title + '\'' +
+        ", description='" + description + '\'' +
+        ", dateAndTimeOfCreation=" + dateAndTimeOfCreation +
+        ", isCompleted=" + isCompleted +
+        '}';
   }
 }

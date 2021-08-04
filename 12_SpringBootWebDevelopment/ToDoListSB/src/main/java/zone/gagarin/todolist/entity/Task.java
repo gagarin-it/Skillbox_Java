@@ -1,7 +1,9 @@
 package zone.gagarin.todolist.entity;
 
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,37 +17,49 @@ public class Task {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  @Column(name = "id")
+  private Long id;
 
-  private String name;
+  @Column(name = "title")
+  private String title;
 
+  @Column(name = "description")
   private String description;
 
-  @OneToMany(mappedBy = "task",cascade = CascadeType.ALL)
-  private Set<Subtask> subtasks;
+  @Column(name = "date_time_of_creation")
+  private LocalDateTime dateAndTimeOfCreation;
+
+  @Column(name = "completed")
+  private boolean isCompleted;
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "task")
+  private List<Subtask> subtasks;
 
   public Task() {
+    this.dateAndTimeOfCreation = LocalDateTime.now();
+
   }
 
-  public Task(String name, String description) {
-    this.name = name;
+  public Task(String title, String description) {
+    this.title = title;
     this.description = description;
+    this.dateAndTimeOfCreation = LocalDateTime.now();
   }
 
-  public int getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getTitle() {
+    return title;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public String getDescription() {
@@ -56,12 +70,38 @@ public class Task {
     this.description = description;
   }
 
-  public Set<Subtask> getSubtasks() {
+  public LocalDateTime getDateAndTimeOfCreation() {
+    return dateAndTimeOfCreation;
+  }
+
+  public void setDateAndTimeOfCreation(LocalDateTime dateAndTimeOfCreation) {
+    this.dateAndTimeOfCreation = dateAndTimeOfCreation;
+  }
+
+  public boolean isCompleted() {
+    return isCompleted;
+  }
+
+  public void setCompleted(boolean completed) {
+    isCompleted = completed;
+  }
+
+  public List<Subtask> getSubtasks() {
     return subtasks;
   }
 
-  public void setSubtasks(Set<Subtask> subtasks) {
-    this.subtasks = subtasks;
+  public void setSubtasks(List<Subtask> tasks) {
+    this.subtasks = tasks;
   }
 
+  @Override
+  public String toString() {
+    return "Task{" +
+        "id=" + id +
+        ", title='" + title + '\'' +
+        ", description='" + description + '\'' +
+        ", dateAndTimeOfCreation=" + dateAndTimeOfCreation +
+        ", isCompleted=" + isCompleted +
+        '}';
+  }
 }

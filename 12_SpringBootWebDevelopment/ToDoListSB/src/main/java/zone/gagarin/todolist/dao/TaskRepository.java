@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import zone.gagarin.todolist.entity.Task;
 
 @Repository
-public interface TaskRepository extends JpaRepository<Task,Integer> {
+public interface TaskRepository extends JpaRepository<Task,Long> {
 
 }
