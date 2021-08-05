@@ -1,15 +1,7 @@
 package zone.gagarin.todolist.entity;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "tasks")
@@ -32,12 +24,8 @@ public class Task {
   @Column(name = "completed")
   private boolean isCompleted;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "task")
-  private List<Subtask> subtasks;
-
   public Task() {
     this.dateAndTimeOfCreation = LocalDateTime.now();
-
   }
 
   public Task(String title, String description) {
@@ -84,14 +72,6 @@ public class Task {
 
   public void setCompleted(boolean completed) {
     isCompleted = completed;
-  }
-
-  public List<Subtask> getSubtasks() {
-    return subtasks;
-  }
-
-  public void setSubtasks(List<Subtask> tasks) {
-    this.subtasks = tasks;
   }
 
   @Override
