@@ -1,5 +1,8 @@
 package zone.gagarin.todolist.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +35,11 @@ public class TaskController {
     if (tasks.isEmpty()) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
+    tasks.forEach(task -> {
+      task.add(linkTo(methodOn(TaskController.class)
+          .getTaskById(task.getId()))
+          .withSelfRel());
+    });
     return ResponseEntity.status(HttpStatus.OK).body(tasks);
   }
 
@@ -41,6 +49,9 @@ public class TaskController {
     if (task == null) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
+    task.add(linkTo(methodOn(TaskController.class)
+        .getTaskById(task.getId()))
+        .withSelfRel());
     return ResponseEntity.status(HttpStatus.OK).body(task);
   }
 
@@ -87,7 +98,7 @@ public class TaskController {
     taskService.deleteById(id);
     return task == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(null)
         : ResponseEntity.status(HttpStatus.OK).body("Deleting Task by ID = " + id);
-}
+  }
 
   @DeleteMapping("/tasks")
   public ResponseEntity<String> deleteAllTasks() {
