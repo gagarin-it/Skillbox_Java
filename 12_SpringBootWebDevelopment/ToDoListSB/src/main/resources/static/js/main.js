@@ -1,75 +1,77 @@
-$(function(){
+$(function () {
 
-    const appendBook = function(data){
-        var bookCode = '<a href="#" class="book-link" data-id="' +
-            data.id + '">' + data.name + '</a><br>';
-        $('#book-list')
-            .append('<div>' + bookCode + '</div>');
-    };
+  //Show adding task form
+  $('#show-add-task-form').click(function () {
+    $('#task-form').css('display', 'flex');
+  });
 
-    //Loading books on load page
-//    $.get('/books/', function(response)
-//    {
-//        for(i in response) {
-//            appendBook(response[i]);
-//        }
-//    });
+  //Closing adding task form
+  $('#task-form').click(function (event) {
+    if (event.target === this) {
+      $(this).css('display', 'none');
+    }
+  });
 
-    //Show adding book form
-    $('#show-add-book-form').click(function(){
-        $('#todolist-form').css('display', 'flex');
-    });
-
-    //Closing adding book form
-    $('#todolist-form').click(function(event){
-        if(event.target === this) {
-            $(this).css('display', 'none');
+  //Adding task
+  $('#save-task').click(function () {
+    var data = {};
+    var dataArray = $('#task-form form').serializeArray();
+    for (i in dataArray) {
+      data[dataArray[i]['name']] = dataArray[i]['value'];
+    }
+    $.ajax({
+      type: "POST",
+      url: '/todolist/tasks',
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      dataType: "json",
+      success: function (response) {
+        $('#task-form').css('display', 'none');
+        location.reload();
+      },
+      error: function (response) {
+        if (response.status === 400) {
+          alert('Ошибка, пустое пустое тело запроса');
         }
+      }
     });
+    return false;
+  });
 
-    //Getting book
-    $(document).on('click', '.book-link', function(){
-        var link = $(this);
-        var bookId = link.data('id');
-        $.ajax({
-            method: "GET",
-            url: '/books/' + bookId,
-            success: function(response)
-            {
-                var code = '<span>Год выпуска:' + response.year + '</span>';
-                link.parent().append(code);
-            },
-            error: function(response)
-            {
-                if(response.status == 404) {
-                    alert('Книга не найдена!');
-                }
-            }
-        });
-        return false;
+  //Delete task by ID
+  $('#delete-task').click(function () {
+    var taskId = document.getElementById('delete-task').value;
+    $.ajax({
+      type: "DELETE",
+      url: '/todolist/tasks/' + taskId,
+      success: function (response) {
+        $('#task-form').css('display', 'none');
+        location.reload();
+      },
+      error: function (response) {
+        if (response.status === 500) {
+          alert('Ошибка, задача отсутствует');
+        }
+      }
     });
+    return false;
+  });
 
-    //Adding book
-    $('#save-book').click(function()
-    {
-        var data = $('#todolist-form form').serialize();
-        $.ajax({
-            method: "POST",
-            url: '/books/',
-            data: data,
-            success: function(response)
-            {
-                $('#todolist-form').css('display', 'none');
-                var book = {};
-                book.id = response;
-                var dataArray = $('#todolist-form form').serializeArray();
-                for(i in dataArray) {
-                    book[dataArray[i]['name']] = dataArray[i]['value'];
-                }
-                appendBook(book);
-            }
-        });
-        return false;
+  //Delete all tasks
+  $('#delete-all-task').click(function () {
+    $.ajax({
+      type: "DELETE",
+      url: '/todolist/tasks',
+      success: function (response) {
+        $('#task-form').css('display', 'none');
+        location.reload();
+      },
+      error: function (response) {
+        if (response.status === 400) {
+          alert('Ошибка, список задач пуст');
+        }
+      }
     });
-
+    return false;
+  });
 });

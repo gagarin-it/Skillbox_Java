@@ -1,32 +1,57 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Список дел</title>
-    <script src="/js/jquery-3.6.0.min.js"></script>
-    <script src="/js/main.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <meta charset="UTF-8">
+  <title>Список дел</title>
+  <script src="/js/jquery-3.4.0.min.js"></script>
+  <script src="/js/main.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
-    <div id="todolist-form">
-        <form>
-            <h2>Добавление дела</h2>
-            <label>Название дела:</label>
-            <input type="text" name="title" value="">
-            <br><br>
-            <label>Описание:</label>
-            <input type="text" name="description" value="">
-            <hr>
-            <button id="save-task">Сохранить</button>
-        </form>
-    </div>
-    <h1>Список дел (<span th:text="${tasksCount}">0</span>)</h1>
-    <button id="show-add-task-form">Добавить книгу</button>
-    <br><br>
-    <div id="task-list">
-        <div th:each="task : ${tasks}">
-            <a class="task-link" th:attr="data-id=${task.id}" th:text="${task.title}" th:href="@{|/todolist/tasks/${task.id}|}" ></a>
-        </div>
-    </div>
+<div id="task-form">
+  <form>
+    <h2>Добавление новой задачи</h2>
+    <label>Наименование задачи:</label>
+    <input style="height: 25px" size="50" type="text" name="title">
+    <label>Описание задачи:</label>
+    <textarea type="text" name="description" cols="51" rows="4" wrap="soft" style="resize: none"></textarea>
+    <hr>
+    <p style="text-align: center">
+      <button id="save-task" style="font-size: medium">Сохранить задачу</button>
+    </p>
+  </form>
+</div>
+<div style="text-align: center">
+  <h1 style="text-align: center">Список дел (<span th:text="${tasksCount}">0</span>)</h1>
+  <p style="text-align: center">
+    <button id="show-add-task-form" style="font-size: medium">Добавить новую задачу</button>
+  </p>
+  <table width="35%" cellspacing="0" cellpadding="0" border="1" align="center">
+    <thead>
+    <tr>
+      <th width="65%">Задача</th>
+      <th width="15%">Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task : ${tasks}">
+      <td style="text-align: left; max-width: 65%" width="65%">
+        <a th:href="@{|/todolist/tasks/${task.id}|}">
+          <label th:text="${task.title}" style="font-size: medium"></label>
+          <br>
+          <label th:text="${task.description}" style="font-size: small"></label>
+        </a>
+      </td>
+      <td width="15%">
+        <button id="read-task">Изменить</button>
+        <button id="delete-task" th:value="${task.id}">Удалить</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <p style="text-align: center">
+    <button id="delete-all-task" style="font-size: medium">Удалить все задачи</button>
+  </p>
+</div>
 </body>
 </html>

@@ -57,12 +57,8 @@ public class TaskController {
 
   @PostMapping("/tasks")
   public ResponseEntity<Task> addNewTask(@RequestBody Task task) {
-    if (task == null) {
-      return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
-    } else {
-      taskService.save(task);
-      return ResponseEntity.status(HttpStatus.CREATED).body(task);
-    }
+  taskService.save(task);
+  return ResponseEntity.status(HttpStatus.CREATED).body(task);
   }
 
   @PostMapping("/tasks/{id}")

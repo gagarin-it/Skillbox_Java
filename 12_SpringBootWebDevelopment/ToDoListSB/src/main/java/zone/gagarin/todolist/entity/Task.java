@@ -1,5 +1,6 @@
 package zone.gagarin.todolist.entity;
 
+import com.sun.istack.NotNull;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,9 +20,11 @@ public class Task extends RepresentationModel<Task> {
   private Long id;
 
   @Column(name = "title")
+  @NotNull
   private String title;
 
   @Column(name = "description")
+  @NotNull
   private String description;
 
   @Column(name = "date_time_of_creation")

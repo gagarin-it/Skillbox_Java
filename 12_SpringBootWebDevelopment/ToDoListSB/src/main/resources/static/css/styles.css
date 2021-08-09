@@ -1,8 +1,8 @@
 * {
-    font-family: "JetBrains Mono";
+    font-family: JetBrains Mono, Arial, Serif;
 }
 
-#todolist-form {
+#task-form {
     display: none;
     align-items: center;
     justify-content: center;
@@ -15,21 +15,25 @@
     background-color: #88888878;
 }
 
-#todolist-form form {
+#task-form form {
     background-color: white;
     border: 1px solid #333;
-    width: 300px;
+    width: 450px;
     padding: 20px;
 }
 
-#todolist-form h2 {
+#task-form h2 {
     margin-top: 0;
 }
 
-#todolist-form label {
+#task-form label {
     display: block;
 }
 
-#todolist-form form > * {
+#task-form button {
+    align-items: center;
+}
+
+#task-form form > * {
     margin-bottom: 5px;
 }
