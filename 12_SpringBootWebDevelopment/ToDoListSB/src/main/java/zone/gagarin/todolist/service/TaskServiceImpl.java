@@ -1,7 +1,9 @@
 package zone.gagarin.todolist.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zone.gagarin.todolist.dao.TaskRepository;
@@ -19,7 +21,39 @@ public class TaskServiceImpl implements TaskService {
 
   @Override
   public List<Task> findAll() {
-    return taskRepository.findAll();
+    return taskRepository.findAll().stream().filter(task -> task.getParentTask() == null)
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<Task> findAllByParentTask(Long idParent) {
+    List<Task> subtasks = new ArrayList<>();
+    Optional<Task> optionalParentTask = taskRepository.findById(idParent);
+    if (optionalParentTask.isPresent()) {
+      Task parentTask = optionalParentTask.get();
+      subtasks = parentTask.getSubtasks();
+    }
+    return subtasks;
+  }
+
+  @Override
+  public Task addNewSubtask(Long idParent, Task subtask) {
+    Task task = null;
+    Optional<Task> optionalParentTask = taskRepository.findById(idParent);
+    if (optionalParentTask.isPresent()) {
+      Task parentTask = optionalParentTask.get();
+            subtask.setParentTask(parentTask);
+      parentTask.addSubtask(taskRepository.save(subtask));
+      taskRepository.save(parentTask);
+      return subtask;
+    } else {
+      return task;
+    }
+  }
+
+  @Override
+  public void deleteSubtask(Long id) {
+    taskRepository.deleteById(id);
   }
 
   @Override

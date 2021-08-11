@@ -44,7 +44,7 @@
       </td>
       <td width="15%">
         <button id="read-task">Изменить</button>
-        <button id="delete-task" th:value="${task.id}">Удалить</button>
+        <button th:attr="onclick=|onTaskDelete(${task.id})|">Удалить</button>
       </td>
     </tr>
     </tbody>

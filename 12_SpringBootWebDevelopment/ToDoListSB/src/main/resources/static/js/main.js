@@ -39,13 +39,11 @@ $(function () {
   });
 
   //Delete task by ID
-  $('#delete-task').click(function () {
-    var taskId = document.getElementById('delete-task').value;
+   function onTaskDelet(id){
     $.ajax({
       type: "DELETE",
       url: '/todolist/tasks/' + taskId,
-      success: function (response) {
-        $('#task-form').css('display', 'none');
+      success: function () {
         location.reload();
       },
       error: function (response) {
@@ -55,19 +53,18 @@ $(function () {
       }
     });
     return false;
-  });
+  };
 
   //Delete all tasks
   $('#delete-all-task').click(function () {
     $.ajax({
       type: "DELETE",
       url: '/todolist/tasks',
-      success: function (response) {
-        $('#task-form').css('display', 'none');
+      success: function () {
         location.reload();
       },
       error: function (response) {
-        if (response.status === 400) {
+        if (response.status === 404) {
           alert('Ошибка, список задач пуст');
         }
       }
@@ -75,3 +72,19 @@ $(function () {
     return false;
   });
 });
+
+//Delete task by ID
+function onTaskDelete(id){
+  $.ajax({
+    type: "DELETE",
+    url: '/todolist/tasks/' + id,
+    success: function () {
+      location.reload();
+    },
+    error: function (response) {
+      if (response.status === 500) {
+        alert('Ошибка, задача отсутствует');
+      }
+    }
+  });
+};

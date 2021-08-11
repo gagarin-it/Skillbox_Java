@@ -48,21 +48,41 @@ public class TaskController {
     Task task = taskService.findById(id);
     if (task == null) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    } else {
+      task.add(linkTo(methodOn(TaskController.class)
+          .getTaskById(task.getId()))
+          .withSelfRel());
+      return ResponseEntity.status(HttpStatus.OK).body(task);
     }
-    task.add(linkTo(methodOn(TaskController.class)
-        .getTaskById(task.getId()))
-        .withSelfRel());
-    return ResponseEntity.status(HttpStatus.OK).body(task);
+  }
+
+  @GetMapping("/tasks/{id}/subtasks")
+  public ResponseEntity<List<Task>> getSubtasksByIdTask(@PathVariable Long id) {
+    List<Task> subtasks = taskService.findAllByParentTask(id);
+    if (subtasks.isEmpty()) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    } else {
+      subtasks.forEach(task -> {
+        task.add(linkTo(methodOn(TaskController.class).getTaskById(task.getId())).withSelfRel());
+      });
+      return ResponseEntity.status(HttpStatus.OK).body(subtasks);
+    }
+  }
+
+  @PostMapping("/tasks/{id}/subtasks")
+  public ResponseEntity<Task> addNewSubtask(@PathVariable Long id, @RequestBody Task task) {
+    taskService.addNewSubtask(id, task);
+    return ResponseEntity.status(HttpStatus.CREATED).body(task);
   }
 
   @PostMapping("/tasks")
   public ResponseEntity<Task> addNewTask(@RequestBody Task task) {
-  taskService.save(task);
-  return ResponseEntity.status(HttpStatus.CREATED).body(task);
+    taskService.save(task);
+    return ResponseEntity.status(HttpStatus.CREATED).body(task);
   }
 
   @PostMapping("/tasks/{id}")
-  public ResponseEntity<Object> addNewSubtask(@PathVariable String id) {
+  public ResponseEntity<Object> methodNotAllowed(@PathVariable String id) {
     return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(null);
   }
 

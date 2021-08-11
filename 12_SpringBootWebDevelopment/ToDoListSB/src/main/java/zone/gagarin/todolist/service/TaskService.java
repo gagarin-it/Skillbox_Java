@@ -7,6 +7,8 @@ public interface TaskService {
 
   List<Task> findAll();
 
+  List<Task> findAllByParentTask(Long idParent);
+
   Task findById(Long id);
 
   void save(Task task);
@@ -14,5 +16,9 @@ public interface TaskService {
   void deleteById(Long id);
 
   void deleteAll();
+
+  Task addNewSubtask(Long idParent, Task subtask);
+
+  void deleteSubtask(Long id);
 
 }

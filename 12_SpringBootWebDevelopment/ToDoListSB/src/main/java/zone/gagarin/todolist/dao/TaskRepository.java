@@ -6,5 +6,4 @@ import zone.gagarin.todolist.entity.Task;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task,Long> {
-
 }

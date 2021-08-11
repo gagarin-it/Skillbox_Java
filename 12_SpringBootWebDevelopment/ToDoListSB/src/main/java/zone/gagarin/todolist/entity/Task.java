@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.lang.Nullable;
 
 @Entity
 @Table(name = "tasks")
@@ -40,19 +41,19 @@ public class Task extends RepresentationModel<Task> {
   @Column(name = "completed")
   private boolean isCompleted;
 
-  @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-  @JoinColumn(name = "parent_task_id",referencedColumnName = "id")
-  private Task taskParent;
-
-  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "taskParent")
+  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "parentTask")
   private List<Task> subtasks;
 
-  public void addSubtask(Task task) {
-    task.setTaskParent(this);
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinColumn(name = "parent_task_id")
+  @Nullable
+  private Task parentTask;
+
+  public void addSubtask(@NotNull Task task) {
     subtasks.add(task);
   }
 
-  public void deleteSubtask(Task task) {
+  public void deleteSubtask(@NotNull Task task) {
     subtasks.remove(task);
   }
 
@@ -115,12 +116,13 @@ public class Task extends RepresentationModel<Task> {
     this.subtasks = subtasks;
   }
 
-  public Task getTaskParent() {
-    return taskParent;
+  @Nullable
+  public Task getParentTask() {
+    return parentTask;
   }
 
-  public void setTaskParent(Task taskParent) {
-    this.taskParent = taskParent;
+  public void setParentTask(@Nullable Task parentTask) {
+    this.parentTask = parentTask;
   }
 
   @Override
