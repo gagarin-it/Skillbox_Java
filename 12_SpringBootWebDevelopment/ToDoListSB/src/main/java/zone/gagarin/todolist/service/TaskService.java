@@ -19,6 +19,4 @@ public interface TaskService {
 
   Task addNewSubtask(Long idParent, Task subtask);
 
-  void deleteSubtask(Long id);
-
 }

@@ -27,33 +27,25 @@ public class TaskServiceImpl implements TaskService {
 
   @Override
   public List<Task> findAllByParentTask(Long idParent) {
-    List<Task> subtasks = new ArrayList<>();
     Optional<Task> optionalParentTask = taskRepository.findById(idParent);
     if (optionalParentTask.isPresent()) {
       Task parentTask = optionalParentTask.get();
-      subtasks = parentTask.getSubtasks();
+      return parentTask.getSubtasks();
     }
-    return subtasks;
+    return new ArrayList<>();
   }
 
   @Override
   public Task addNewSubtask(Long idParent, Task subtask) {
-    Task task = null;
     Optional<Task> optionalParentTask = taskRepository.findById(idParent);
     if (optionalParentTask.isPresent()) {
       Task parentTask = optionalParentTask.get();
-            subtask.setParentTask(parentTask);
+      subtask.setParentTask(parentTask);
       parentTask.addSubtask(taskRepository.save(subtask));
       taskRepository.save(parentTask);
       return subtask;
-    } else {
-      return task;
     }
-  }
-
-  @Override
-  public void deleteSubtask(Long id) {
-    taskRepository.deleteById(id);
+    return null;
   }
 
   @Override
@@ -78,7 +70,6 @@ public class TaskServiceImpl implements TaskService {
 
   @Override
   public void deleteAll() {
-    List<Task> tasks = taskRepository.findAll();
-    tasks.forEach(task -> taskRepository.deleteById(task.getId()));
+    taskRepository.deleteAll();
   }
 }

@@ -111,16 +111,48 @@ public class TaskController {
   @DeleteMapping("/tasks/{id}")
   public ResponseEntity<String> deleteTaskById(@PathVariable Long id) {
     Task task = taskService.findById(id);
-    taskService.deleteById(id);
-    return task == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(null)
-        : ResponseEntity.status(HttpStatus.OK).body("Deleting Task by ID = " + id);
+    if (task == null) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    } else {
+      taskService.deleteById(id);
+      return ResponseEntity.status(HttpStatus.OK).body("Deleting Task by ID = " + id);
+    }
   }
 
   @DeleteMapping("/tasks")
   public ResponseEntity<String> deleteAllTasks() {
     List<Task> tasks = taskService.findAll();
-    tasks.forEach(t -> taskService.deleteById(t.getId()));
-    return tasks.isEmpty() ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(null)
-        : ResponseEntity.status(HttpStatus.OK).body("Deleting All Tasks");
+    if (tasks.isEmpty()) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    } else {
+      taskService.deleteAll();
+      return ResponseEntity.status(HttpStatus.OK).body("Deleting All Tasks");
+    }
+  }
+
+  @DeleteMapping("/tasks/{idParent}/subtasks")
+  public ResponseEntity<String> deleteAllSubtasksByTask(@PathVariable Long idParent) {
+    List<Task> subtasks = taskService.findAllByParentTask(idParent);
+    if (subtasks.isEmpty()) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    } else {
+      subtasks.forEach(s -> s.setParentTask(null));
+      subtasks.forEach(s -> taskService.deleteById(s.getId()));
+      return ResponseEntity.status(HttpStatus.OK).body("Deleting All Subtasks By Tasks ID = " + idParent);
+    }
+  }
+
+  @DeleteMapping("/tasks/{idParent}/subtasks/{idSubtask}")
+  public ResponseEntity<String> deleteAllSubtasksByTask(@PathVariable Long idParent, @PathVariable Long idSubtask) {
+    List<Task> subtasks = taskService.findAllByParentTask(idParent);
+    Task subtask = taskService.findById(idSubtask);
+    if (subtasks.isEmpty() || subtask == null) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    } else {
+      subtask.setParentTask(null);
+      taskService.deleteById(subtask.getId());
+      return ResponseEntity.status(HttpStatus.OK)
+          .body("Deleting Subtask by ID = " + idSubtask + ", from the Task by ID = " + idParent);
+    }
   }
 }

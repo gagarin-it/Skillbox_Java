@@ -1,5 +1,8 @@
 package zone.gagarin.todolist.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,6 +23,7 @@ import org.springframework.lang.Nullable;
 
 @Entity
 @Table(name = "tasks")
+@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Task extends RepresentationModel<Task> {
 
   @Id
@@ -42,6 +46,7 @@ public class Task extends RepresentationModel<Task> {
   private boolean isCompleted;
 
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "parentTask")
+  @JsonBackReference
   private List<Task> subtasks;
 
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -51,10 +56,6 @@ public class Task extends RepresentationModel<Task> {
 
   public void addSubtask(@NotNull Task task) {
     subtasks.add(task);
-  }
-
-  public void deleteSubtask(@NotNull Task task) {
-    subtasks.remove(task);
   }
 
   public Task() {
