@@ -1,4 +1,4 @@
-package zone.gagarin.todolist.dao;
+package zone.gagarin.todolist.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

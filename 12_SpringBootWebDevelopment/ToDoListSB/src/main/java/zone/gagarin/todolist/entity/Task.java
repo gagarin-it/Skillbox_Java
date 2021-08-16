@@ -45,6 +45,10 @@ public class Task extends RepresentationModel<Task> {
   @Column(name = "completed")
   private boolean isCompleted;
 
+//  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//  @JoinColumn(name = "user_id")
+//  private User user;
+
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "parentTask")
   @JsonBackReference
   private List<Task> subtasks;
@@ -125,6 +129,14 @@ public class Task extends RepresentationModel<Task> {
   public void setParentTask(@Nullable Task parentTask) {
     this.parentTask = parentTask;
   }
+
+//  public User getUser() {
+//    return user;
+//  }
+//
+//  public void setUser(User user) {
+//    this.user = user;
+//  }
 
   @Override
   public String toString() {

@@ -88,3 +88,7 @@ function onTaskDelete(id){
     }
   });
 };
+
+(function(){
+  console.log("Hello World!");
+})();
